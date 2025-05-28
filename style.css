@@ -91,10 +91,30 @@ header {
   margin: 1%;
   padding: 1%;
 }
+
+.card-section {
+  width: 100%;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.destacados-container {
+  width: 100%;
+}
+
 .destacados {
   background-color: #bbc2ca;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 .destacados a {
+  width: 40px;
   background-color: rgb(18, 180, 59);
   display: inline-table;
   justify-content: space-between;
