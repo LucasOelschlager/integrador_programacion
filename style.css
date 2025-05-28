@@ -1,75 +1,88 @@
-nav {
-   /*DISPLAY: define como se comporta un elemento en la pag,o sea,como se muestra y como se organizan sus hijos(los elementos dentro de el)*/
-     /*se puede poner los alementos uno al lado del otro,alinear(centro,borde izq/der,ETC)*/
-    display: flex;
-    justify-content: space-between;/*sirve para distribuir los elementos horizontalmente(existen mas variantes ) */
-    align-items: center;
-    background-color: #2c3e50;
-    padding: 10px 20px;
-  }
-  .logo {
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  .menu {
-    display: flex;
-    gap: 20px;
-    /*GAP: define el espacio (separacion) entre los elementos hijos dentro de un contenedor que usa flexbox o grid*/
-    /*Esto significa que entre cada enlace habra 20 pixeles de espacio automaticamente.*/
-  }
-  .menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s;
-  }
-  .menu a:hover {
-    color: #f1c40f;
-  }
-  .Carrusel{
-    background-color: #f13607;
-  }
-  .cuadro{
-    background-color: aqua;
-    display:inline-table;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1%;
-    padding: 1%;
-    
-  }
-  .destacados{
-    background-color: #bbc2ca;
-   
-  }
-  .destacados a {
-    background-color: rgb(18, 180, 59);
-    display:inline-table;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1%;
-    padding: 1%;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #2c3e50;
+  padding: 10px 20px;
+}
+.logo {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.menu {
+  display: flex;
+  gap: 20px;
+}
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+  width: 80%;
+}
+.menu a:hover {
+  color: #f1c40f;
+}
 
-  .imgPublicidad{
-    background-color: #f1c40f;
-  }
-  
-  .info{
-    background-color: #2c3e50;
-  }
-  .info p{
-    background-color: rgb(145, 145, 15);
-    display:inline-table;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1%;
-    padding: 1%;
-    
-  }
+.links-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #34495e;
+  padding: 10px 20px;
+  width: 100%;
+}
 
-  footer{
-    background-color: aquamarine;
-  }
+.links {
+  display: flex;
+}
+.Carrusel {
+  background-color: #f13607;
+}
+.cuadro {
+  background-color: aqua;
+  display: inline-table;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1%;
+  padding: 1%;
+}
+.destacados {
+  background-color: #bbc2ca;
+}
+.destacados a {
+  background-color: rgb(18, 180, 59);
+  display: inline-table;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1%;
+  padding: 1%;
+}
+
+.imgPublicidad {
+  background-color: #f1c40f;
+}
+
+.info {
+  background-color: #2c3e50;
+}
+.info p {
+  background-color: rgb(145, 145, 15);
+  display: inline-table;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1%;
+  padding: 1%;
+}
+
+footer {
+  background-color: aquamarine;
+}
