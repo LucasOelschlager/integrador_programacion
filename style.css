@@ -94,23 +94,26 @@ header {
 
 .card-section {
   width: 100%;
-  /* display: flex; */
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
   flex-direction: column;
 }
 
 .destacados-container {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
 }
 
 .destacados {
   background-color: #bbc2ca;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
   
 }
 .destacados a {
