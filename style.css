@@ -100,10 +100,11 @@ main {
 .card-section {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: #1c1c1c;
   margin-top: 50px;
 
@@ -117,15 +118,14 @@ main {
 .destacados-container {
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  padding: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
+
   background-color: #1c1c1c;
 }
 
 .destacados {
-  height: auto;
-  width: 100%;
   h4 {
     color: snow;
     text-align: center;
@@ -149,7 +149,7 @@ main {
 }
 
 .cursos-img {
-  width: 600px;
+  width: 500px;
   min-height: 600px;
   object-fit: cover;
   filter: brightness(0.6);
