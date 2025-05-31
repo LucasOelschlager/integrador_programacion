@@ -15,7 +15,7 @@ main {
   background-color: #1c1c1c;
 }
 /*CSS INICIO NAVBAR-*/
-#navbar {
+/*#navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,6 +72,7 @@ main {
   font-size: 1rem;
   align-items: center;
 }
+*/
 /*FIN NAVBAR*/
 
 /*INICIO CAROUSEL BOOTSTRAP*/
@@ -224,3 +225,88 @@ footer{
   padding: 15px;
 }
 /*--------------------------------------------------------------------CRISTIAN*/
+/*---------------------------------------------------CRISTIAN*/
+
+/* INICIO NAVBAR */
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 15px 30px;
+}
+
+/*.logo-img {
+  height: 50px;
+}*/
+.logo-img {
+  width: auto;
+  transform: scale(1.2);
+  padding-left: 20px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.logo {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.links-container {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  position: relative;
+}
+
+/* LINKS */
+.links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px;
+  transition: color 0.3s;
+}
+
+.links a:hover {
+  color: #00bcd4;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #2a2a2a;
+  padding: 10px 0;
+  border-radius: 4px;
+  min-width: 160px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.submenu li a:hover {
+  background-color: #00bcd4;
+  color: black;
+}
+
+/* Mostrar submenu al hacer hover en el padre */
+.dropdown:hover .submenu {
+  display: block;
+}
+/* FIN NAVBAR */

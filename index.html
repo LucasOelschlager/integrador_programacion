@@ -16,21 +16,43 @@
   <body>
     <!--INICIO HEADER-->
     <header>
+   
+      
       <nav id="navbar">
-        <a href="#"
-          ><img src="assets/img/logo.png" alt="" class="logo-img"
-        /></a>
+        <a href="#"><img src="assets/img/logo.png" alt="" class="logo-img"/></a>
         <div class="menu">
           <ul class="links-container">
-            <li class="links"><a href="#">CURSOS</a></li>
-            <li class="links"><a href="#">EXTENSION</a></li>
-            <li class="links"><a href="#">SEMINARIOS</a></li>
+            <li class="links dropdown"><a href="#">CURSOS</a>
+            <ul class="submenu">
+              <li><a href="#">PROGRAMACION</a></li>
+              <li><a href="#">COCINA</a></li>
+              <li><a href="#">FINANZAS </a></li>
+              <li><a href="#">INTELIGENCIA ARTIFICIL</a></li>
+            </ul>
+          </li>
+
+          <ul class="links-container">
+            <li class="links dropdown"><a href="#">EXTENSION</a>
+            <ul class="submenu">
+              <li><a href="#">BUSQUEDA LABORAL</a></li>
+              <li><a href="#">BLOG</a></li>
+            </ul>
+          </li>
+          <ul class="links-container">
+            <li class="links dropdown"><a href="#">SEMINARIO</a>
+            <ul class="submenu">
+              <li><a href="#">SEMINARIO PYTHON</a></li>
+              <li><a href="#">SEMINARIO ECONOMIA</a></li>
+            </ul>
+          </li>
+        
             <li class="links"><a href="#">SOBRE NOSOTROS</a></li>
-            <li class="links"><a href="#">CONTACTO</a></li>
+            <li class="links"><a href="/pages/contactoForm.html">CONTACTO</a></li>
             <li class="links"><a href="#">INICIO SESION</a></li>
           </ul>
         </div>
       </nav>
+
     </header>
     <!--FIN HEADER-->
     <!--INICIO MAIN-->
@@ -190,11 +212,11 @@
     <footer>
       <div class="container text-center"></div>
       <div class="row justify-content-evenly">
-        <div class="col-4">
+        <div class="col-3">
           <h3>Copyright© 2025</h3>
           <p>Todos los derechos reservados.</p>
         </div>
-        <div class="col-4">
+        <div class="col-2">
           <a href="#" id="iconoRedes"><img src="assets/img/imagenes-cursos/iconos/facebook.png" width="10%" alt=""></a>
           <a href="#"><img src="assets/img/imagenes-cursos/iconos/instagram.png" alt="" width="10%"></a>
           <a href="#"><img src="assets/img/imagenes-cursos/iconos/linkedin.png" alt="" width="10%"></a>
@@ -211,5 +233,6 @@
       integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
       crossorigin="anonymous"
     ></script>
+    
   </body>
 </html>
