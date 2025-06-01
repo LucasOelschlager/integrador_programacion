@@ -2,14 +2,35 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-#navbar {
+
+header {
+  width: 100%;
+  height: auto;
+}
+
+main {
+  background-color: #1c1c1c;
+}
+/*CSS INICIO NAVBAR-*/
+/*#navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: #2c3e50;
+  background-color: #1c1c1c;
   padding: 10px 20px;
+}
+
+.logo-img {
+  width: auto;
+  transform: scale(1.2);
+  padding-left: 20px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .logo {
   color: #fff;
@@ -19,14 +40,15 @@
 }
 .menu {
   display: flex;
-  gap: 20px;
+
+  width: 50%;
+  justify-content: center;
+  align-items: center;
 }
 .menu a {
   color: white;
   text-decoration: none;
-  font-size: 16px;
   transition: color 0.3s;
-  width: 80%;
 }
 .menu a:hover {
   color: #f1c40f;
@@ -36,17 +58,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #34495e;
+  background-color: #242323;
   padding: 10px 20px;
+  color: white;
+  font-size: 1.2rem;
   width: 100%;
+  border-radius: 25px;
 }
 
 .links {
   display: flex;
+  gap: 20px;
+  font-size: 1rem;
+  align-items: center;
 }
-.Carrusel {
-  background-color: #f13607;
+*/
+/*FIN NAVBAR*/
+
+/*INICIO CAROUSEL BOOTSTRAP*/
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  object-fit: cover;
+  background-color: #242323;
 }
+
+.img-carousel {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/*FIN CAROUSEL BOOTSTRAP*/
 .cuadro {
   background-color: aqua;
   display: inline-table;
@@ -55,22 +99,71 @@
   margin: 1%;
   padding: 1%;
 }
+
+/*INICIO CARDS*/
+.card-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #1c1c1c;
+  margin-top: 50px;
+  /*aca hay un error*/
+  h1 {
+    color: snow;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.destacados-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+  gap: 20px;
+  background-color: #1c1c1c;
+}
+
 .destacados {
-  background-color: #bbc2ca;
+  /*aca hay un error*/
+  h4 {
+    color: snow;
+    text-align: center;
+    position: relative;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    pointer-events: none;
+  }
 }
 .destacados a {
-  background-color: rgb(18, 180, 59);
-  display: inline-table;
+  width: calc(100% / 3 - 20px);
   justify-content: space-between;
   align-items: center;
-  margin: 1%;
-  padding: 1%;
 }
 
-.imgPublicidad {
-  background-color: #f1c40f;
+.cursos-img {
+  width: 600px;
+  min-height: 600px;
+  object-fit: cover;
+  filter: brightness(0.6);
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
 }
 
+.cursos-img:hover {
+  filter: brightness(1);
+  transform: scale(1);
+  transition: all 0.5s ease-in-out;
+}
+/*FIN CARDS*/
+
+/*ESTO CREO QUE HAY QUE BORRAR .INFO Y .INFO P*/
 .info {
   background-color: #2c3e50;
 }
@@ -82,7 +175,161 @@
   margin: 1%;
   padding: 1%;
 }
+/*-----------------------------------------*/
 
+/*--------------------------------------------------------------------------------CRISTIAN*/
+.separador {
+  padding: 5px;
+  border-top: 1px solid #ccc; /* Agrega un borde superior */
+  margin-top: 10px; /* Agrega espacio para la separación */
+}
+
+.gridPadre {
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5px;
+}
+
+.gridPadre img {
+  display: block;
+  margin: 0 auto;
+  width: 45%; /* Ajustar a tu gusto */
+  height: 70%;
+}
+.seccion4 {
+  display: grid;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+.seccionFont {
+  color: white;
+}
+
+/*CSS FOOTER*/
 footer {
-  background-color: aquamarine;
+  background-color: #1c1c1c;
+  color: white;
+  margin-top: 1px;
+  padding: 15px;
+}
+/*--------------------------------------------------------------------CRISTIAN*/
+/*---------------------------------------------------CRISTIAN*/
+
+/* INICIO NAVBAR */
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 15px 30px;
+}
+
+/*.logo-img {
+  height: 50px;
+}*/
+.logo-img {
+  width: auto;
+  transform: scale(1.2);
+  padding-left: 20px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.logo {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.links-container {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  position: relative;
+}
+
+/* LINKS */
+.links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px;
+  transition: color 0.3s;
+}
+
+.links a:hover {
+  color: #00bcd4;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #2a2a2a;
+  padding: 10px 0;
+  border-radius: 4px;
+  min-width: 160px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.submenu li {
+  list-style: none;
+}
+
+.submenu li a:hover {
+  background-color: #00bcd4;
+  color: black;
+}
+
+/* Mostrar submenu al hacer hover en el padre */
+.dropdown:hover .submenu {
+  display: block;
+}
+/* FIN NAVBAR */
+.imgPublicidad {
+  text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4,
+    2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd,
+    3px 4px 2px #378ab4, 4px 3px 3px #5dabcd, 4px 5px 3px #378ab4,
+    5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd,
+    6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4,
+    8px 7px 0px #5dabcd, 2px 2px 2px rgba(206, 89, 55, 0);
+  color: #bc2e1e;
+  background: #0d1f30;
+  height: 200px;
+  text-align: center;
+  padding: 70px;
+  border-radius: 100px;
+}
+
+/*RESPONSIVE DESIGN*/
+
+@media (max-width: 480px) {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .card-section {
+    display: none;
+  }
 }
