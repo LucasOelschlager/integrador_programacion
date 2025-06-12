@@ -13,7 +13,7 @@ body{
 }
 
 .container{
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;/*una vez que achico la pagina las cards no entran,entonces,con esta propiedad puedo hacer que se vayan uno abajo del otro(lo adapto a un dispositivo movil) */
@@ -39,10 +39,11 @@ body{
 .card{
     border-radius: 5px;
     box-shadow: 0 1px 10px rgba(0, 0, 0 , 0.2);
-    width: 300px;
+    width: 350px;
     transition: all 400ms ease;
     overflow: hidden;/*lo uso para que se redondeen las esquinas*/
     padding-bottom: 20px;
+    
 }
 .card:hover {
     box-shadow: 5px 5px 20px rgba(0, 0, 0 , 0.4);
@@ -53,7 +54,8 @@ body{
     height: 200px;
 }
 /**/
-.card figure imag {
+.card figure img {
+    
     height: 100%;/*Altura de la imagen*/
     width: 100%;/*Ancho de la imagen*/
     object-fit: cover;/*lo uso para que la imagen no se pueda distorcionar */
