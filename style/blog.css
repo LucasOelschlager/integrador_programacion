@@ -1,0 +1,79 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    width: 100%;
+    min-height: 100vh;/*para que ocupe toda la pantalla*/
+    display: flex;
+    align-items: center;
+    justify-content: center;/*para que los elementos se puedan centrar*/
+}
+
+.container{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;/*una vez que achico la pagina las cards no entran,entonces,con esta propiedad puedo hacer que se vayan uno abajo del otro(lo adapto a un dispositivo movil) */
+    gap: 60px;/*se encarga de hacer la separacion*/
+    padding: 20px 0;
+
+}
+
+.content{
+    padding: 15px 10px;
+    text-align: center;
+    
+
+}
+.content h2 {
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.content p {
+    margin-bottom: 30px;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.card{
+    border-radius: 5px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0 , 0.2);
+    width: 300px;
+    transition: all 400ms ease;
+    overflow: hidden;/*lo uso para que se redondeen las esquinas*/
+    padding-bottom: 20px;
+}
+.card:hover {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0 , 0.4);
+    transform: translateY(-3%);
+}
+
+.card figure {
+    height: 100px;
+}
+/**/
+.card figure imag {
+    height: 20px;/*Altura de la imagen*/
+    width: 20px;/*Ancho de la imagen*/
+    object-fit: cover;/*lo uso para que la imagen no se pueda distorcionar */
+}
+
+.content .button{
+    padding: 10px;
+    color:rgb(153, 40, 5);
+    background-color: #cb760897;
+    border: 1px solid #cb7708;
+    border-radius: 4px;
+    transition: all 400ms ease;
+    cursor: pointer;
+    text-decoration: none;/*borraria el subrrayado*/
+}
+
+.content .button:hover{
+    background-color: #cb7708;
+    color: #fff;
+}
