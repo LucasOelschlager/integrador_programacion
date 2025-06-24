@@ -1,5 +1,5 @@
-@import url('/style/destacados-section.css');
-@import url('/style/menu.css');
+@import url("/style/destacados-section.css");
+@import url("/style/menu.css");
 
 * {
   margin: 0;
@@ -43,17 +43,17 @@ main {
 } */
 .menu {
   display: flex;
-align-items: center;
+  align-items: center;
   list-style: none;
-text-align: center;
+  text-align: center;
 }
 
-.menu a {
+.menu .links {
   color: white;
   text-decoration: none;
   transition: color 0.3s;
 }
-.menu a:hover {
+.menu .links:hover {
   color: #f1c40f;
 }
 
@@ -213,14 +213,13 @@ footer {
   position: relative;
 }
 
-
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
   color: white;
   background: #2a2a2a;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -237,7 +236,6 @@ footer {
   transform: translateY(0);
   z-index: 1000;
 }
-
 
 .submenu li a {
   display: block;
@@ -299,8 +297,6 @@ footer {
     width: 100%;
   }
 
-  
-
   .imgPublicidad {
     width: 100%;
     height: auto;
@@ -352,8 +348,6 @@ footer {
   .card-section {
     width: 100%;
   }
-
-  
 
   .imgPublicidad {
     width: 90%;
