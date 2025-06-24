@@ -23,7 +23,6 @@ document.querySelectorAll(".menu-desplegable-list a").forEach((link) => {
 /*VERIFICAR SI HAY USUARIO LOGGEADO // MOSTRAR "INICIAR" O REGISTRARSE*/
 
 let testUser = true;
-
 const checkUser = document.getElementById("log");
 
 checkUser.innerHTML =
