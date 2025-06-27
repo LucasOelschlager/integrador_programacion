@@ -1,0 +1,13 @@
+#Inicializo la aplicacion de flask
+app = Flask(__name__, static_folder='static')
+#El parametro __name__ sirve para saber si estamos ejecutando este archivo como principal
+
+#verifico si lo corre
+if __name__ == '__main__':
+    app.run(debug=True)
+
+[Establecer conexion a la bd]
+La forma de iniciar una conexion,teniendo como parametro nuestra app,
+indico:
+conexion = MySQL(app)
+En la variable conexion es donde voy a tener la conexion para poder trabajar con la base de datos
