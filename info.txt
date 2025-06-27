@@ -11,3 +11,11 @@ La forma de iniciar una conexion,teniendo como parametro nuestra app,
 indico:
 conexion = MySQL(app)
 En la variable conexion es donde voy a tener la conexion para poder trabajar con la base de datos
+
+app.route('/administrar/<codigo>',methods=['GET'])
+El codigo va a ser un parametro que yo voy a estar recibiendo dentro de la url
+
+def leer_inscripto(codigo):
+    cursor = conexion.connection.cursor()
+    sql = "SELECT dni, nombre, apellido, email, curso FROM personasinscriptas WHERE dni = '{0}'".format(codigo)
+    Con el WHERE lo que hago es filtrar por dni 
