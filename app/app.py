@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from datetime import datetime
@@ -50,7 +50,8 @@ def register():
                  'rol': 'alumno'
             })
             db.session.commit()
-            return "¡Datos recibidos!"
+           
+            return redirect(url_for('index'))
     return render_template('/register.html')
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

@@ -15,22 +15,32 @@
       <div class="input_container">
         <label for="nombre_input">Nombre: </label>
         <input type="text" name="name" id="nombre_input" />
+        <p class="error" id="error_nombre" style="display: none"></p>
         <label for="apellido_input">Apellido: </label>
         <input type="text" name="apellido" id="apellido_input" />
+        <p class="error" id="error_apellido" style="display: none"></p>
         <label for="email_input">Email: </label>
         <input type="email" name="email" id="email_input" />
+        <p class="error" id="error_email" style="display: none"></p>
         <label for="email_inputConfirm">Confirme su email: </label>
         <input type="email" name="emailConfirm" id="email_inputConfirm" />
+        <p class="error" id="error_emailConfirm" style="display: none"></p>
         <label for="password_input">Contraseña: </label>
         <input type="password" name="contrasena" id="password_input" />
+        <p class="error" id="error_password" style="display: none"></p>
         <label for="password_inputConfirm">Confirme su contraseña: </label>
         <input type="password" name="contrasena" id="password_inputConfirm" />
+        <p class="error" id="error_passwordConfirm" style="display: none"></p>
         <label for="dni_input">Número de documento: </label>
         <input type="text" name="documento" id="dni_input" />
+        <p class="error" id="error_dni" style="display: none"></p>
         <label for="terms">Acepto los terminos y condiciones</label>
         <input type="checkbox" name="term" id="terms" />
+        <p class="error" id="error_terms" style="display: none"></p>
       </div>
       <button type="submit">Registrarse!</button>
     </form>
+
+    <script src="{{ url_for('static', filename='logic/validacion_registro.js') }}"></script>
   </body>
 </html>
