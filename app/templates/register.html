@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/register.css')}}"
+    />
+    <title>Registro</title>
+  </head>
+  <body>
+    <form action="{{ url_for('register') }}" method="POST" class="form">
+      <h2>Registrate</h2>
+      <div class="input_container">
+        <label for="nombre_input">Nombre: </label>
+        <input type="text" name="name" id="nombre_input" />
+        <label for="apellido_input">Apellido: </label>
+        <input type="text" name="apellido" id="apellido_input" />
+        <label for="email_input">Email: </label>
+        <input type="email" name="email" id="email_input" />
+        <label for="email_inputConfirm">Confirme su email: </label>
+        <input type="email" name="emailConfirm" id="email_inputConfirm" />
+        <label for="password_input">Contraseña: </label>
+        <input type="password" name="contrasena" id="password_input" />
+        <label for="password_inputConfirm">Confirme su contraseña: </label>
+        <input type="password" name="contrasena" id="password_inputConfirm" />
+        <label for="dni_input">Número de documento: </label>
+        <input type="text" name="documento" id="dni_input" />
+        <label for="terms">Acepto los terminos y condiciones</label>
+        <input type="checkbox" name="term" id="terms" />
+      </div>
+      <button type="submit">Registrarse!</button>
+    </form>
+  </body>
+</html>
