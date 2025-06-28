@@ -5,7 +5,11 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD:src/templates/index.html
   <link rel="stylesheet" href="{{url_for('static', filename='style/main.css')}}" />
+=======
+  <link rel="stylesheet" href="style/style.css">
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
@@ -17,11 +21,19 @@
 
   <header>
     <nav id="navbar">
+<<<<<<< HEAD:src/templates/index.html
       <a href="#"><img src="{{ url_for('static', filename='assets/img/logo.png') }}" alt="Logo UTN" class="logo-img" /></a>
 
       <ul class="menu visible">
         <li class="links dropdown">
           <a href="{{ url_for('cursos') }}" aria-haspopup="true" aria-expanded="false">CURSOS</a>
+=======
+      <a href="#"><img src="./assets/img/logo.png" alt="Logo UTN" class="logo-img" /></a>
+
+      <ul class="menu visible">
+        <li class="links dropdown">
+          <a href="index.html" aria-haspopup="true" aria-expanded="false">CURSOS</a>
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
           <ul class="submenu">
             <li><a href="#">DISENIO WEB</a></li>
             <li><a href="#">BASE DE DATOS</a></li>
@@ -33,8 +45,13 @@
         <li class="links dropdown">
           <a href="#" aria-haspopup="true" aria-expanded="false">EXTENSION</a>
           <ul class="submenu">
+<<<<<<< HEAD:src/templates/index.html
             <li><a href="https://ar.indeed.com/">BUSQUEDA LABORAL</a></li>
             <li><a href="#">BLOG</a></li>
+=======
+            <li><a href="#">BUSQUEDA LABORAL</a></li>
+            <li><a href="/pages/blog.html">BLOG</a></li>
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
           </ul>
         </li>
 
@@ -47,8 +64,14 @@
         </li>
 
         <li class="links"><a href="#">SOBRE NOSOTROS</a></li>
+<<<<<<< HEAD:src/templates/index.html
         <li class="links"><a href="{{ url_for('contacto') }}">CONTACTO</a></li>
         <li class="links"><a href="#">INICIO SESION</a></li>
+=======
+        <li class="links"><a href="/pages/contactoForm.html">CONTACTO</a></li>
+        <li class="links"><a href="#" id="log">INICIO SESION</a></li>
+        <li class="links"><a href="#" id="reg">REGISTRARSE</a></li>
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
       </ul>
 
       <i class="ri-menu-line"></i>
@@ -64,7 +87,8 @@
         <li><a href="#">Seminario</a></li>
         <li><a href="#">Sobre Nosotros</a></li>
         <li><a href="#">Contacto</a></li>
-        <li><a href="#">Iniciar Sesion</a></li>
+        <li><a href="#" id="log">Iniciar Sesion</a></li>
+        <li><a href="#" id="reg">Registrarse</a></li>
       </ul>
 
     </div>
@@ -78,16 +102,28 @@
       <div id="carouselExampleFade" class="carousel slide carousel-fade">
         <div class="carousel-inner">
           <div class="carousel-item active">
+<<<<<<< HEAD:src/templates/index.html
             <img src="{{ url_for('static', filename='assets/img/programacioncarousel1.jpg') }}" class="img-carousel" alt="..." />
+=======
+            <img src="./assets/img/abdelkader-ft-j8yoQwv8gjk-unsplash.jpg" class="img-carousel" alt="..." />
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
             <button class="btn-carousel">Incribirse!</button>
           </div>
           <div class="carousel-item">
             <a href="www.google.com" target="_blank">
+<<<<<<< HEAD:src/templates/index.html
               <img src="{{ url_for('static', filename='assets/img/programacioncarousel2.jpg') }}" class="img-carousel" alt="..." />
             </a>
           </div>
           <div class="carousel-item">
             <img src="{{ url_for('static', filename='assets/img/programacioncarousel3.jpg') }}" class="img-carousel" alt="..." />
+=======
+              <img src="./assets/img/insung-yoon-B5nBsjYYYk0-unsplash.jpg" class="img-carousel" alt="..." />
+            </a>
+          </div>
+          <div class="carousel-item">
+            <img src="./assets/img/karsten-winegeart-VYlycxMAaeg-unsplash.jpg" class="img-carousel" alt="..." />
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -111,19 +147,33 @@
         <div class="destacados">
           <h4>PROGRAMACION PYTHON</h4>
           <a href="#">
+<<<<<<< HEAD:src/templates/index.html
             <img src="{{ url_for('static', filename='assets/img/imagenes-cursos/cursopython.jpg') }} " alt="Ir a los cursos de programacion"
+=======
+            <img src="./assets/img/imagenes-cursos/programacion.jpg" alt="Ir a los cursos de programacion"
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
               class="cursos-img" />
           </a>
         </div>
         <div class="destacados">
+<<<<<<< HEAD:src/templates/index.html
           <h4>CURSO SQLSERVER</h4>
           <a href="#"><img src="{{ url_for('static', filename='assets/img/imagenes-cursos/sqlserver.jpg') }} "alt="Ir a los cursos de cocina"
+=======
+          <h4>Curso de cocina</h4>
+          <a href="#"><img src="./assets/img/imagenes-cursos/cocina.jpg" alt="Ir a los cursos de cocina"
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
               class="cursos-img" />
           </a>
         </div>
         <div class="destacados">
+<<<<<<< HEAD:src/templates/index.html
           <h4>DESARROLLO WEB</h4>
           <a href="#"><img src="{{ url_for('static', filename='assets/img/imagenes-cursos/desarrolloweb.png') }} " alt="r a los cursos de Ingles" class="cursos-img" /></a>
+=======
+          <a href="#"><img src="./assets/img/imagenes-cursos/cocina.jpg" alt="Ir a los cursos de Ingles" class="cursos-img" /></a>
+          <h4>Curso de Ingles</h4>
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
         </div>
       </section>
     </section>
@@ -144,25 +194,41 @@
       <div class="gridPadre">
 
         <div class="itemIcono">
+<<<<<<< HEAD:src/templates/index.html
           <img src="{{ url_for('static', filename='assets/img/iconos/cronografo.png') }}" alt="">
+=======
+          <img src="./assets/img/imagenes-cursos/iconos/cronografo.png" alt="">
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
         </div>
         <div class="item">
           <h3>Aprende a tu ritmo</h3>
           <p>Disfruta aprendiendo desde casa,sin horarios y a tu ritmo.</p>
         </div>
+<<<<<<< HEAD:src/templates/index.html
         <div class="itemIcono"><img src="{{ url_for('static', filename='assets/img/iconos/entrenamiento.png')}}" alt=""></div>
+=======
+        <div class="itemIcono"><img src="./assets/img/imagenes-cursos/iconos/entrenamiento.png" alt=""></div>
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
         <div class="item">
           <h3>Comparte conocimientos e ideas</h3>
           <p>Pregunta,pide opinion y ofrece soluciones. Comparte tu experiencia de aprendizaje con otros estudiantes.
           </p>
         </div>
+<<<<<<< HEAD:src/templates/index.html
         <div class="itemIcono"><img src="{{ url_for('static', filename='assets/img/iconos/modelo-a-seguir.png')}}" alt=""></div>
+=======
+        <div class="itemIcono"><img src="./assets/img/imagenes-cursos/iconos/modelo-a-seguir.png" alt=""></div>
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
         <div class="item">
           <h3>Conoce a profesores expertos</h3>
           <p>Cada profesor te transmitira sus conocimientos con pasion, ofreciendote explicaciones claras y una
             perspectiva profesional en cada leccion</p>
         </div>
+<<<<<<< HEAD:src/templates/index.html
         <div class="itemIcono"><img src="{{ url_for('static', filename='assets/img/iconos/certificado.png')}}" alt=""></div>
+=======
+        <div class="itemIcono"><img src="./assets/img/imagenes-cursos/iconos/certificado.png" alt=""></div>
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
         <div class="item">
           <h3>Consigue un certificado con cada curso</h3>
           <p>Obten un certificado personalizado y firmado por tu profesor. Compartelo en tu porfolio,redes sociales o
@@ -219,10 +285,17 @@
         <p>Todos los derechos reservados.</p>
       </div>
       <div class="col-2">
+<<<<<<< HEAD:src/templates/index.html
         <a href="#" id="iconoRedes"><img src="{{ url_for('static', filename='assets/img/iconos/facebook.png')}}" width="10%" alt=""></a>
         <a href="#"><img src="{{ url_for('static', filename='assets/img/iconos/instagram.png')}}" alt="" width="10%"></a>
         <a href="#"><img src="{{ url_for('static', filename='assets/img/iconos/linkedin.png')}}" alt="" width="10%"></a>
         <a href="#"><img src="{{ url_for('static', filename='assets/img/iconos/telegrama.png')}}" alt="" width="10%"></a>
+=======
+        <a href="#" id="iconoRedes"><img src="./assets/img/imagenes-cursos/iconos/facebook.png" width="10%" alt=""></a>
+        <a href="#"><img src="./assets/img/imagenes-cursos/iconos/instagram.png" alt="" width="10%"></a>
+        <a href="#"><img src="./assets/img/imagenes-cursos/iconos/linkedin.png" alt="" width="10%"></a>
+        <a href="#"><img src="./assets/img/imagenes-cursos/iconos/telegrama.png" alt="" width="10%"></a>
+>>>>>>> e394a83001934ab104295d23cf26695417450087:index.html
       </div>
 
     </div>
@@ -233,7 +306,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
     crossorigin="anonymous"></script>
-  <script src="./logic/menu.js"></script>
+  <script src="./assets/js/menu.js"></script>
 
 </body>
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/static/style/cursos.css
 *{
     padding: 0;
     margin: 0;
@@ -22,22 +23,47 @@ body{
     gap: 60px;/*se encarga de hacer la separacion*/
     padding: 20px 0;
 
+=======
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", Arial, sans-serif;
+}
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(135deg, #232526 0%, #0a0a0a 100%);
 }
 
-.content{
-    padding: 15px 10px;
-    text-align: center;
-
-}
-.content h2 {
-    font-weight: 400;
-    margin-bottom: 10px;
-}
-.content p {
-    margin-bottom: 30px;
-    line-height: 1.5;
+h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 32px 0 16px 0;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 24px #2fb4cc55;
+>>>>>>> e394a83001934ab104295d23cf26695417450087:style/cursos.css
 }
 
+.container {
+  width: 95%;
+  max-width: 1400px;
+  margin: 40px auto 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+  padding: 32px 0;
+}
+
+<<<<<<< HEAD:src/static/style/cursos.css
 .card{
     background-color: #867e7e;
     border-radius: 5px;
@@ -72,9 +98,101 @@ body{
     transition: all 400ms ease;
     cursor: pointer;
     text-decoration: none;/*borraria el subrrayado*/
+=======
+.card {
+  border-radius: 18px;
+  background: linear-gradient(135deg, #181818 60%, #232526 100%);
+  box-shadow: 0 8px 32px rgba(47, 180, 204, 0.15),
+    0 1.5px 10px rgba(0, 0, 0, 0.25);
+  width: calc(33.33% - 32px);
+  min-height: 600px;
+  transition: transform 0.3s cubic-bezier(0.4, 2, 0.6, 1), box-shadow 0.3s;
+  overflow: hidden;
+  padding-bottom: 24px;
+  border: 1.5px solid #2fb4cc33;
+  position: relative;
+}
+.card:hover {
+  box-shadow: 0 12px 36px #2fb4cc55, 0 2px 16px #000a;
+  transform: translateY(-10px) scale(1.03) rotate(-1deg);
+  border-color: #2fb4cc;
 }
 
-.content .button:hover{
-    background-color: #2fb4cc;
-    color: #fff;
+.card figure {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  padding: 18px 0 10px 0;
 }
+
+.cursos-img {
+  width: 210px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px #2fb4cc33;
+  border: 2.5px solid #2fb4cc55;
+  transition: transform 0.3s;
+}
+.card:hover .cursos-img {
+  transform: scale(1.07) rotate(2deg);
+  border-color: #2fb4cc;
+>>>>>>> e394a83001934ab104295d23cf26695417450087:style/cursos.css
+}
+
+.content {
+  padding: 18px 16px 0 16px;
+  text-align: center;
+  min-height: 400px;
+  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #f8fafd;
+}
+
+.content h2 {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #2fb4cc;
+  letter-spacing: 1px;
+}
+
+.content p {
+  font-size: 1.08rem;
+  line-height: 1.5;
+  font-weight: 400;
+  text-transform: none;
+  font-family: "Roboto", Arial, sans-serif;
+  color: #e0e0e0;
+}
+
+.content .button {
+  padding: 12px 28px;
+  color: #2fb4cc;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: 2px solid #2fb4cc;
+  background: transparent;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 18px;
+  box-shadow: 0 2px 12px #2fb4cc22;
+  letter-spacing: 1px;
+}
+.content .button:hover {
+  background: linear-gradient(90deg, #2fb4cc 60%, #1e90a3 100%);
+  color: #fff;
+  border-color: #1e90a3;
+  box-shadow: 0 4px 24px #2fb4cc55;
+}
+
+/*ESTILIZADO DE LAS IMAGENES DE LOS CURSOS- Lucas*/

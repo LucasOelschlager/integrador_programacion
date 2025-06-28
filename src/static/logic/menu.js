@@ -19,3 +19,11 @@ document.querySelectorAll(".menu-desplegable-list a").forEach((link) => {
     menuDesplegable.classList.remove("visible");
   });
 });
+
+/*VERIFICAR SI HAY USUARIO LOGGEADO // MOSTRAR "INICIAR" O REGISTRARSE*/
+
+let testUser = true;
+const checkUser = document.getElementById("log");
+
+checkUser.innerHTML =
+  testUser == false ? `<img src="test"/>` : "INICIAR SESIÓN";
