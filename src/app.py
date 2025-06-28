@@ -20,39 +20,26 @@ def home():
     return render_template('index.html')
 #-------ACA EMPIEZA LA CONEXION API+SQL-----------
 #HAY QUE CHEQUEAR ESTO
-@app.route('/administrar', methods=['GET'])
-def listar_inscriptos():
+
+@app.route('/crud')
+def crud():
+    return render_template('pages/crud.html')
+
+
+from flask import render_template
+
+@app.route('/administrar')
+def listar_inscriptosv3():
     try:
-        pagina = int(request.args.get('pagina', 1))
-        limite = int(request.args.get('limite', 5))
-
-        offset = (pagina - 1) * limite
-
         cursor = conexion.connection.cursor()
-        sql = """
-            SELECT dni, nombre, apellido, email, curso 
-            FROM personainscripta
-            ORDER BY nombre ASC
-            LIMIT %s OFFSET %s
-        """
-        cursor.execute(sql, (limite, offset))
+        sql = "SELECT dni, nombre, apellido, email, curso FROM personasinscriptas ORDER BY nombre ASC"
+        cursor.execute(sql)
         datos = cursor.fetchall()
-
-        personas = []
-        for fila in datos:
-            persona = {
-                'dni': fila[0],
-                'nombre': fila[1],
-                'apellido': fila[2],
-                'email': fila[3],
-                'curso': fila[4]
-            }
-            personas.append(persona)
-
-        return  render_template('administracion.html')
-    
+        print(datos)
+        return render_template('pages/crud.html', datos=datos)
     except Exception as ex:
-        return jsonify({'mensaje': 'Error interno', 'error': str(ex)}), 500
+        return f"Error: {str(ex)}"
+
 @app.route('/administrar')
 def listar_inscriptosv2():
     try:
@@ -69,7 +56,7 @@ def listar_inscriptosv2():
                                 'curso':fila[4]
                                 }
             personas.append(personasinscriptas)
-            return jsonify({'Personas': personas, 'mensaje': "Listado de inscriptos."})
+        return jsonify({'Personas': personas, 'mensaje': "Listado de inscriptos."})
     except Exception as ex:
         return jsonify({'mensaje': "Error"})
 
@@ -108,43 +95,40 @@ def leer_inscripto(dni):
 @app.route('/administrar',methods=['POST'])
 def registrar_persona():
     data = request.json#capturo los datos
-    if (validar_dni(data['dni']) and validar_nombre(data['nombre']) and validar_apellido(data['apellido'])):
-        try:
+    #if(validar_dni(data['dni']) and validar_nombre(data['nombre']) and validar_apellido(data['apellido'])):
+    try:
             inscripto = leer_inscriptoBD(data['dni'])
             if inscripto != None:
                 return jsonify({'mensaje':"El dni ya existe,no se puede duplicar." }),400
             else: 
                 cursor = conexion.connection.cursor()
-                sql = "INSERT INTO personainscripta (dni, nombre, apellido, email, curso) VALUES (%s,%s,%s,%s,%s)"
+                sql = "INSERT INTO personasinscriptas (dni, nombre, apellido, email, curso) VALUES (%s,%s,%s,%s,%s)"
                 dataInscripto= (data['dni'], data['nombre'], data['apellido'], data['email'], data['curso'])
                 cursor.execute(sql,dataInscripto)
                 conexion.connection.commit()#confirma la accion de insercion
                 return jsonify({'mensaje':"Persona Registrada"}),201
-        except Exception as ex:
+    except Exception as ex:
             return jsonify({'mensaje': "Error"}),500
-    return jsonify({'mensaje': "Parametros invalidos...",'error': str(ex)}),400
+
 
 @app.route('/administrar/<dni>',methods=['PUT'])
 def actualizar_inscripto(dni):
     data = request.json#capturo los datos
-    if (validar_dni(data['dni'])
-        and validar_nombre(data['nombre'])
-        and validar_apellido(data['apellido'])):
-        try:
+
+    try:
             inscripto = leer_inscriptoBD(dni)
             if inscripto != None:
                 dataInscripto = (data['nombre'], data['apellido'], data['email'], dni)
                 cursor = conexion.connection.cursor()
-                sql = """ UPDATE personainscripta SET nombre = %s, apellido = %s,email = %s WHERE dni = %s"""
+                sql = """ UPDATE personasinscriptas SET nombre = %s, apellido = %s,email = %s WHERE dni = %s"""
                 cursor.execute(sql,dataInscripto)
                 conexion.connection.commit()#confrima la actualizacion
                 return jsonify({'mensaje': "Persona actualizada."})
             else:
                 return jsonify({'mensaje':"Persona no ecnontrada."}),404
-        except Exception as ex:
+    except Exception as ex:
             return jsonify({'mensaje': "ERROR"}),500
-    else: 
-        return jsonify({'mensaje': "Parametros invalidos...",'error': str(ex)}),400         
+
 
 
 @app.route('/administrar/<dni>', methods=['DELETE'])
@@ -153,7 +137,7 @@ def eliminar_inscripto(dni):
         inscripto = leer_inscriptoBD(dni)
         if inscripto is not None:
             cursor = conexion.connection.cursor()
-            sql = "DELETE FROM personainscripta WHERE dni = %s"
+            sql = "DELETE FROM personasinscriptas WHERE dni = %s"
             cursor.execute(sql, (dni,))
             conexion.connection.commit()
             return jsonify({'mensaje': "Persona eliminada correctamente."}), 200
@@ -161,6 +145,8 @@ def eliminar_inscripto(dni):
             return jsonify({'mensaje': "Persona no encontrada."}), 404
     except Exception as ex:
         return jsonify({'mensaje': "Parametros invalidos...", 'error': str(ex)}), 500
+
+
 
 #-------ACA TERMINA LA CONEXION API+SQL-----------
 
