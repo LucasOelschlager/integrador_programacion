@@ -44,7 +44,6 @@ def mostrar_usuarios():
 
 @app.route('/')
 def index():
-    # return 'Hola, desde FLASK!'
     return render_template('index.html')
 
 
