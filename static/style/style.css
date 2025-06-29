@@ -1,5 +1,5 @@
-@import url("/style/destacados-section.css");
-@import url("/style/menu.css");
+@import url("/static/style/destacados-section.css");
+@import url("/static/style/menu.css");
 
 * {
   margin: 0;

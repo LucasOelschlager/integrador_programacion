@@ -24,6 +24,7 @@ document.querySelectorAll(".menu-desplegable-list a").forEach((link) => {
 
 let testUser = true;
 const checkUser = document.getElementById("log");
+console.log(checkUser);
 
 checkUser.innerHTML =
   testUser == false ? `<img src="test"/>` : "INICIAR SESIÓN";
