@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style/cursos.css" />
-
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/cursos.css') }}"
+    />
     <title>Document</title>
   </head>
   <body>
@@ -13,7 +15,10 @@
     <div class="container">
       <div class="card">
         <figure>
-          <img src="/assets/img/imagenes-cursos/react.png" class="cursos-img" />
+          <img
+            src="{{ url_for('static', filename='/img/imagenes-cursos/react.png') }}"
+            class="cursos-img"
+          />
         </figure>
         <div class="content">
           <h2>React desde Cero</h2>
@@ -32,7 +37,7 @@
       <div class="card">
         <figure>
           <img
-            src="/assets/img/imagenes-cursos/cursophp.png"
+            src="{{ url_for('static', filename='/img/imagenes-cursos/cursophp.png') }}"
             class="cursos-img"
           />
         </figure>
@@ -47,13 +52,13 @@
             potenciar tu perfil profesional en el mundo del desarrollo web.
             ¡Sumate y empezá a programar con PHP!
           </p>
-          <a href="/pages/cursoPHP.html" class="button">Inscribirse</a>
+          <a href="{{ url_for('curso_php')}}" class="button">Inscribirse</a>
         </div>
       </div>
       <div class="card">
         <figure>
           <img
-            src="/assets/img/imagenes-cursos/cursopython.jpg"
+            src="{{ url_for('static', filename='/img/imagenes-cursos/cursopython.jpg') }}"
             class="cursos-img"
           />
         </figure>
@@ -72,7 +77,10 @@
       </div>
       <div class="card">
         <figure>
-          <img src="/assets/img/imagenes-cursos/c++.png" class="cursos-img" />
+          <img
+            src="{{ url_for('static', filename='/img/imagenes-cursos/c++.png') }}"
+            class="cursos-img"
+          />
         </figure>
         <div class="content">
           <h2>PROGRAMACION C++</h2>
@@ -85,13 +93,13 @@
             solo curiosidad y ganas de potenciar tu perfil profesional. ¡Sumate
             y descubrí todo lo que podés lograr con C++!
           </p>
-          <a href="/pages/cursoC++.html" class="button">Inscribirse</a>
+          <a href="{{ url_for('curso_cpp') }}" class="button">Inscribirse</a>
         </div>
       </div>
       <div class="card">
         <figure>
           <img
-            src="/assets/img/imagenes-cursos/cursoJava.jpg"
+            src="{{ url_for('static', filename='/img/imagenes-cursos/cursoJava.jpg') }}"
             class="cursos-img"
           />
         </figure>
@@ -110,7 +118,10 @@
       </div>
       <div class="card">
         <figure>
-          <img src="/assets/img/imagenes-cursos/js.png" class="cursos-img" />
+          <img
+            src="{{ url_for('static', filename='/img/imagenes-cursos/js.png') }}"
+            class="cursos-img"
+          />
         </figure>
         <div class="content">
           <h2>PROGRAMACION JAVASCRIPT</h2>
@@ -128,7 +139,7 @@
       <div class="card">
         <figure>
           <img
-            src="/assets/img/imagenes-cursos/cursohtml.png"
+            src="{{ url_for('static', filename='/img/imagenes-cursos/cursohtml.png') }}"
             class="cursos-img"
           />
         </figure>
@@ -148,7 +159,7 @@
       <div class="card">
         <figure>
           <img
-            src="/assets/img/imagenes-cursos/cursocss.png"
+            src="{{ url_for('static', filename='/img/imagenes-cursos/cursocss.png') }}"
             class="cursos-img"
           />
         </figure>

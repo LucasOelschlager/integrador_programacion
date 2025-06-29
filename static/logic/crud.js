@@ -20,7 +20,7 @@ function guardarCambios(event) {
   const apellido = document.getElementById("apellido-edit").value;
   const email = document.getElementById("email-edit").value;
 
-  fetch(`/administrar/${dni}`, {
+  fetch(`/admin/${dni}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -49,7 +49,7 @@ function guardarCambios(event) {
 
 function eliminarInscripto(dni) {
   if (confirm("¿Estás seguro de que querés eliminar este inscripto?")) {
-    fetch(`/administrar/${dni}`, {
+    fetch(`/admin/${dni}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
