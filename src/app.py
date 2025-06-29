@@ -6,7 +6,7 @@ from validaciones import *
 
 #Inicializo la aplicacion de flask
 app = Flask(__name__, static_folder='static')
-#DESDE ACA EMPIEZA LA CONEXION A LA BD
+#DESDE ACA EMPIEZA LA CONEXION A LA BDasdahsdbv
 conexion=MySQL(app)
 
 #mysql.init_app(app)
