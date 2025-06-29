@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/login.css')}}"
+    />
     <title>Iniciar Sesión</title>
   </head>
   <body>
-    <form>
-      <h2>Registrate</h2>
-      <div>
-        <label for="name_input"></label>
-        <input type="text" name="name_input" id="name_input" />
+    <!-- Mostrar mensajes flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+
+    <form action="{{ url_for('login') }}" method="POST" class="form">
+      <h2>Iniciar Sesión</h2>
+      <div class="input_container">
+        <label for="email_input">Email:</label>
+        <input type="email" name="email" id="email_input" required />
+        <p class="error" id="error_email" style="display: none"></p>
+
+        <label for="password_input">Contraseña:</label>
+        <input type="password" name="contrasena" id="password_input" required />
+        <p class="error" id="error_password" style="display: none"></p>
+      </div>
+
+      <button type="submit">Iniciar Sesión</button>
+
+      <div class="form-links">
+        <p>
+          ¿No tienes cuenta?
+          <a href="{{ url_for('register') }}">Regístrate aquí</a>
+        </p>
       </div>
     </form>
+
+    <script src="{{ url_for('static', filename='logic/validacion_login.js') }}"></script>
   </body>
 </html>
