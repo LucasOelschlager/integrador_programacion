@@ -47,8 +47,14 @@
 
         <li class="links"><a href="#">SOBRE NOSOTROS</a></li>
         <li class="links"><a href="{{ url_for('contacto') }}">CONTACTO</a></li>
-        <li class="links"><a href="{{ url_for('register') }}" id="reg">REGISTRARSE</a></li>
+
+        {% if session.logged_in %}
+        <li class="links"><a href="{{ url_for('dashboard') }}" id="dashboard">MI PANEL</a></li>
+        <li class="links"><a href="{{ url_for('logout') }}" id="logout">CERRAR SESIÓN</a></li>
+        {% else %}
         <li class="links"><a href="{{ url_for('login') }}" id="log">INICIO SESION</a></li>
+
+        {% endif %}
       </ul>
 
       <i class="ri-menu-line"></i>
@@ -76,12 +82,14 @@
       <div id="carouselExampleFade" class="carousel slide carousel-fade">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{ url_for('static', filename='img/abdelkader-ft-j8yoQwv8gjk-unsplash.jpg') }}" class="img-carousel" alt="..." />
+            <img src="{{ url_for('static', filename='img/abdelkader-ft-j8yoQwv8gjk-unsplash.jpg') }}"
+              class="img-carousel" alt="..." />
             <button class="btn-carousel">Incribirse!</button>
           </div>
           <div class="carousel-item">
             <a href="www.google.com" target="_blank">
-              <img src="{{ url_for('static', filename='img/insung-yoon-B5nBsjYYYk0-unsplash.jpg') }}" class="img-carousel" alt="..." />
+              <img src="{{ url_for('static', filename='img/insung-yoon-B5nBsjYYYk0-unsplash.jpg') }}"
+                class="img-carousel" alt="..." />
             </a>
           </div>
           <div class="carousel-item">
@@ -107,18 +115,19 @@
         <div class="destacados">
           <h4>Programacion</h4>
           <a href="#">
-            <img src="{{ url_for('static', filename='img/imagenes-cursos/programacion.jpg') }}" alt="Ir a los cursos de programacion"
-              class="cursos-img" />
+            <img src="{{ url_for('static', filename='img/imagenes-cursos/programacion.jpg') }}"
+              alt="Ir a los cursos de programacion" class="cursos-img" />
           </a>
         </div>
         <div class="destacados">
           <h4>Curso de cocina</h4>
-          <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/cocina.jpg') }}" alt="Ir a los cursos de cocina"
-              class="cursos-img" />
+          <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/cocina.jpg') }}"
+              alt="Ir a los cursos de cocina" class="cursos-img" />
           </a>
         </div>
         <div class="destacados">
-          <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/cocina.jpg') }}" alt="Ir a los cursos de Ingles" class="cursos-img" /></a>
+          <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/cocina.jpg') }}"
+              alt="Ir a los cursos de Ingles" class="cursos-img" /></a>
           <h4>Curso de Ingles</h4>
         </div>
       </section>
@@ -146,19 +155,22 @@
           <h3>Aprende a tu ritmo</h3>
           <p>Disfruta aprendiendo desde casa,sin horarios y a tu ritmo.</p>
         </div>
-        <div class="itemIcono"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/entrenamiento.png') }}" alt=""></div>
+        <div class="itemIcono"><img
+            src="{{ url_for('static', filename='img/imagenes-cursos/iconos/entrenamiento.png') }}" alt=""></div>
         <div class="item">
           <h3>Comparte conocimientos e ideas</h3>
           <p>Pregunta,pide opinion y ofrece soluciones. Comparte tu experiencia de aprendizaje con otros estudiantes.
           </p>
         </div>
-        <div class="itemIcono"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/modelo-a-seguir.png') }}" alt=""></div>
+        <div class="itemIcono"><img
+            src="{{ url_for('static', filename='img/imagenes-cursos/iconos/modelo-a-seguir.png') }}" alt=""></div>
         <div class="item">
           <h3>Conoce a profesores expertos</h3>
           <p>Cada profesor te transmitira sus conocimientos con pasion, ofreciendote explicaciones claras y una
             perspectiva profesional en cada leccion</p>
         </div>
-        <div class="itemIcono"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/certificado.png') }}" alt=""></div>
+        <div class="itemIcono"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/certificado.png') }}"
+            alt=""></div>
         <div class="item">
           <h3>Consigue un certificado con cada curso</h3>
           <p>Obten un certificado personalizado y firmado por tu profesor. Compartelo en tu porfolio,redes sociales o
@@ -211,10 +223,14 @@
         <p>Todos los derechos reservados.</p>
       </div>
       <div class="col-2">
-        <a href="#" id="iconoRedes"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/facebook.png') }}" width="10%" alt=""></a>
-        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/instagram.png') }}" alt="" width="10%"></a>
-        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/linkedin.png') }}" alt="" width="10%"></a>
-        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/telegrama.png') }}" alt="" width="10%"></a>
+        <a href="#" id="iconoRedes"><img
+            src="{{ url_for('static', filename='img/imagenes-cursos/iconos/facebook.png') }}" width="10%" alt=""></a>
+        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/instagram.png') }}" alt=""
+            width="10%"></a>
+        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/linkedin.png') }}" alt=""
+            width="10%"></a>
+        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/telegrama.png') }}" alt=""
+            width="10%"></a>
       </div>
     </div>
   </footer>

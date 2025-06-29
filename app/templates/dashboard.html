@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Rosario Cursos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .welcome {
+            font-size: 1.2rem;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="welcome">
+            ¡Bienvenido, {{ user_name }}!
+        </div>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Cerrar Sesión</a>
+    </div>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <h1>Panel de Control</h1>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Mis Cursos</h3>
+                <p>Ve los cursos en los que estás inscrito y accede a tu contenido de aprendizaje.</p>
+                <a href="#" class="btn">Ver Mis Cursos</a>
+            </div>
+
+            <div class="card">
+                <h3>Explorar Cursos</h3>
+                <p>Descubre nuevos cursos disponibles y amplía tus conocimientos.</p>
+                <a href="#" class="btn">Explorar Cursos</a>
+            </div>
+
+            <div class="card">
+                <h3>Mi Perfil</h3>
+                <p>Actualiza tu información personal y gestiona tu cuenta.</p>
+                <a href="#" class="btn">Editar Perfil</a>
+            </div>
+
+            <div class="card">
+                <h3>Certificados</h3>
+                <p>Descarga y visualiza los certificados de los cursos completados.</p>
+                <a href="#" class="btn">Ver Certificados</a>
+            </div>
+
+            <div class="card">
+                <h3>Progreso</h3>
+                <p>Revisa tu progreso de aprendizaje y estadísticas de estudio.</p>
+                <a href="#" class="btn">Ver Progreso</a>
+            </div>
+
+            <div class="card">
+                <h3>Soporte</h3>
+                <p>¿Necesitas ayuda? Contacta con nuestro equipo de soporte.</p>
+                <a href="{{ url_for('contacto') }}" class="btn">Contactar</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
