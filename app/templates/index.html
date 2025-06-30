@@ -69,8 +69,7 @@
         <li><a href="#">Seminario</a></li>
         <li><a href="#">Sobre Nosotros</a></li>
         <li><a href="#">Contacto</a></li>
-        <li><a href="#" id="reg">Registrarse</a></li>
-        <li><a href="#" id="log">Iniciar Sesion</a></li>
+        <li><a href="{{ url_for('login')}}" id="log">Iniciar Sesion</a></li>
       </ul>
     </div>
   </header>
@@ -82,7 +81,7 @@
       <div id="carouselExampleFade" class="carousel slide carousel-fade">
         <div class="carousel-inner">
           <div class="carousel-item active">
-           <img src="{{ url_for('static', filename='/img/carousel-img/programacioncarousel1.jpg') }}"
+            <img src="{{ url_for('static', filename='/img/carousel-img/programacioncarousel1.jpg') }}"
               class="img-carousel" alt="..." />
             <button class="btn-carousel">Incribirse!</button>
           </div>
@@ -93,7 +92,8 @@
             </a>
           </div>
           <div class="carousel-item">
-            <img src="{{ url_for('static', filename='/img/carousel-img/programacioncarousel2.jpg') }}" class="img-carousel" alt="..." />
+            <img src="{{ url_for('static', filename='/img/carousel-img/programacioncarousel2.jpg') }}"
+              class="img-carousel" alt="..." />
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
