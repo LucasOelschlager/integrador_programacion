@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style/login.css')}}"
-    />
-    <title>Iniciar Sesión</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <form action="{{ url_for('login') }}" method="POST" class="form">
-        <h2>Iniciar Sesión</h2>
-        <div class="input_container">
-          <label for="email_input">Email:</label>
-          <input type="email" name="email" id="email_input" required />
-          <p class="error" id="error_email" style="display: none"></p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css')}}" />
+  <title>Iniciar Sesión</title>
+</head>
 
-          <label for="password_input">Contraseña:</label>
-          <input
-            type="password"
-            name="contrasena"
-            id="password_input"
-            required
-          />
-          <p class="error" id="error_password" style="display: none"></p>
-        </div>
+<body>
+  <div class="container">
+    <form action="{{ url_for('login') }}" method="POST" class="form">
+      <h2>Iniciar Sesión</h2>
+      <div class="input_container">
+        <label for="email_input">Email:</label>
+        <input type="email" name="email" id="email_input" required />
+        <p class="error" id="error_email" style="display: none"></p>
 
-        <button type="submit">Iniciar Sesión</button>
+        <body>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% endwith %}
+          <div class="container">
+            <form action="{{ url_for('login') }}" method="POST" class="form">
+              <h2>Iniciar Sesión</h2>
+              <div class="input_container">
+                <label for="email_input">Email:</label>
+                <input type="email" name="email" id="email_input" />
+                <p class="error" id="error_email" style="display: none"></p>
 
-        <div class="form-links">
-          <p>
-            ¿No tienes cuenta?
-            <a href="{{ url_for('register') }}" class="register-link"
-              >Regístrate aquí</a
-            >
-          </p>
-          <p>
-            <a href="{{ url_for('index') }}" class="back-link"
-              >← Volver al inicio</a
-            >
-          </p>
-        </div>
-      </form>
-    </div>
+                <label for="password_input">Contraseña:</label>
+                <input type="password" name="contrasena" id="password_input" />
+                <p class="error" id="error_password" style="display: none"></p>
+              </div>
 
-    <script src="{{ url_for('static', filename='logic/validacion_login.js') }}"></script>
-  </body>
+              <div class="form-links">
+                <p>
+                  ¿No tienes cuenta?
+                  <a href="{{ url_for('register') }}" class="register-link">Regístrate aquí</a>
+                </p>
+                <p>
+                  <a href="{{ url_for('index') }}" class="back-link">← Volver al inicio</a>
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <script src="{{ url_for('static', filename='logic/validacion_login.js') }}"></script>
+        </body>
+
 </html>

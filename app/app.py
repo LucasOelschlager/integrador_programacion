@@ -73,27 +73,41 @@ def login():
         print(f"Email recibido: {email}")
         print(f"Contraseña recibida: {contrasena}")
 
+        # Buscar usuario en la base de datos
         usuario_query = text("SELECT * FROM usuarios WHERE email = :email")
         resultado = db.session.execute(usuario_query, {'email': email})
         usuario = resultado.fetchone()
 
-        # Debug: verificar si encontró el usuario
-        if usuario:
-            print(f"Usuario encontrado: {usuario.nombre}")
-            print(f"Hash en BD: {usuario.contrasena_hash}")
-            print(f"Hash generado: {encriptar_contrasena(contrasena)}")
-        else:
-            print("Usuario no encontrado en la base de datos")
+        if not usuario:
+            # Usuario NO existe en el sistema
+            print(f"Usuario con email {email} no encontrado en el sistema")
+            flash('Este email no está registrado en el sistema. Por favor, regístrate primero.', 'error')
+            return render_template('login.html')
 
-        if usuario and verificar_contrasena(contrasena, usuario.contrasena_hash):
+        # Debug: verificar usuario encontrado
+        print(f"Usuario encontrado: {usuario.nombre}")
+        print(f"Hash en BD: {usuario.contrasena_hash}")
+        print(f"Hash generado: {encriptar_contrasena(contrasena)}")
+
+        # Verificar contraseña
+        if verificar_contrasena(contrasena, usuario.contrasena_hash):
+            # Login exitoso
             session['user_id'] = usuario.DNI
             session['user_name'] = usuario.nombre
+            session['user_email'] = usuario.email
+            session['user_rol'] = usuario.rol
             session['logged_in'] = True
-            flash('¡Bienvenido! Has iniciado sesión correctamente.', 'success')
+            
+            print(f"Login exitoso para: {usuario.nombre}")
+            flash(f'¡Bienvenido, {usuario.nombre}!', 'success')
             return redirect(url_for('dashboard'))
         else:
-            flash('Email o contraseña incorrectos.', 'error')
+            # Contraseña incorrecta
+            print("Contraseña incorrecta")
+            flash('Email o contraseña incorrectos. Por favor, inténtalo de nuevo.', 'error')
+            return render_template('login.html')
 
+    # GET request - mostrar formulario
     return render_template('login.html')
 
 
