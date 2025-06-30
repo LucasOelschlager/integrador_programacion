@@ -13,21 +13,30 @@ if os.path.exists('.env'):
 app = Flask(__name__, static_folder='../static')
 
 # CONFIGURACION DE LA BASE DE DATOS
-DB_HOST = os.getenv('MYSQL_HOST', 'localhost')
-DB_USER = os.getenv('MYSQL_USER', 'root')
-DB_PASSWORD = os.getenv('MYSQL_PASSWORD')
-DB_NAME = os.getenv('MYSQL_DB', 'rosario_cursos')
+is_production = os.getenv('VERCEL') == '1'
 
-if not DB_PASSWORD:
-    raise ValueError(
-        "La variable de entorno MYSQL_PASSWORD no está configurada.")
+if is_production:
+    # Configuración para producción
+    DB_HOST = os.getenv('MYSQL_HOST')
+    DB_USER = os.getenv('MYSQL_USER')
+    DB_PASSWORD = os.getenv('MYSQL_PASSWORD')
+    DB_NAME = os.getenv('MYSQL_DB')
+    DB_PORT = os.getenv('MYSQL_PORT', '3306')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+else:
+    # Configuración para desarrollo local
+    DB_HOST = os.getenv('MYSQL_HOST_LOCAL', 'localhost')
+    DB_USER = os.getenv('MYSQL_USER_LOCAL', 'root')
+    DB_PASSWORD = os.getenv('MYSQL_PASSWORD_LOCAL', 'root')
+    DB_NAME = os.getenv('MYSQL_DB_LOCAL', 'rosario_cursos')
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('SECRET_KEY', 'fallback-secret-key')
 
 db = SQLAlchemy(app)
-
 
 def encriptar_contrasena(contrasena):
     return hashlib.sha256(contrasena.encode()).hexdigest()
