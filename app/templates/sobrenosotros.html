@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous" />
+
+    <title>Document</title>
+</head>
+<body>
+    <section class="sobre-nosotros bg-dark text-white py-5" id="sobre-nosotros">
+<div class="container">
+
+    <!-- Título -->
+    <div class="text-center mb-5 animate__animated animate__fadeInUp">
+    <h2 class="fw-bold">Sobre Nosotros</h2>
+    <p class="lead">Formando programadores con pasión, desde el primer día.</p>
+    </div>
+
+    <div class="row align-items-center animate__animated animate__fadeInUp">
+
+    <!-- Imagen -->
+    <div class="col-md-6 mb-4 mb-md-0 animate__animated animate__fadeInUp">
+        <img src="{{ url_for('static', filename='img/imagenes-sobreNosotros/imgSN2.png') }}" alt="Instituto"
+            class="img-fluid rounded shadow-lg">
+    </div>
+
+    <!-- Texto y misión -->
+    <div class="col-md-6">
+        <h4 class="fw-bold">¿Quiénes somos?</h4>
+        <p>
+        Somos un instituto especializado en enseñanza de programación y tecnología, con más de 10 años formando 
+        desarrolladores, diseñadores y profesionales IT. Nuestros cursos están pensados para que cualquier persona, 
+        sin importar su experiencia previa, pueda aprender desde cero y avanzar hasta niveles profesionales.
+        </p>
+        <p>
+        Nuestra misión es democratizar el acceso a la educación digital, brindando herramientas reales 
+        para cambiar vidas a través del conocimiento.
+        </p>
+    </div>
+
+    </div>
+
+    <!-- Valores / estadísticas -->
+    <div class="row text-center mt-5 animate__animated animate__fadeInUp" >
+    <div class="col-md-3 col-6 mb-4">
+        <img src="{{ url_for('static', filename='img/imagenes-sobreNosotros/imgSN5.jpg') }}" width="60" alt="Alumnos">
+        <h5 class="mt-2">+1000 Alumnos</h5>
+        <small>Capacitados en diferentes tecnologías</small>
+    </div>
+    <div class="col-md-3 col-6 mb-4 animate__animated animate__fadeInUp">
+        <img src="{{ url_for('static', filename='img/imagenes-sobreNosotros/imgSN4.jpg') }}" width="60" alt="Experiencia">
+        <h5 class="mt-2">10+ Años</h5>
+        <small>En educación tecnológica</small>
+    </div>
+    <div class="col-md-3 col-6 mb-4 animate__animated animate__fadeInUp">
+        <img src="{{ url_for('static', filename='img/imagenes-sobreNosotros/imgSN3.jpg') }}" width="60" alt="Docentes">
+        <h5 class="mt-2">Profesores Expertos</h5>
+        <small>Con experiencia real en la industria</small>
+    </div>
+    <div class="col-md-3 col-6 mb-4 ">
+        <img src="{{ url_for('static', filename='img/imagenes-sobreNosotros/imgSN1.jpg') }}" width="60" alt="Certificados">
+        <h5 class="mt-2">Certificados Oficiales</h5>
+        <small>Reconocidos en todo el país</small>
+    </div>
+    </div>
+
+    <!-- Información de contacto -->
+    <div class="row mt-5 animate__animated animate__fadeInUp">
+    <div class="col-md-6">
+        <h4 class="fw-bold">¿Dónde estamos?</h4>
+        <p>
+            Entre Ríos 1350, Rosario, Santa Fe, Argentina<br>
+            WhatsApp: +54 9 341 745 9784<br>
+            Email: info@cursosutn.edu.ar
+        </p>
+    </div>
+    <div class="col-md-6 animate__animated animate__fadeInUp">
+        <h4 class="fw-bold">Seguinos en redes</h4>
+        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/facebook.png') }}" width="30" alt="Facebook"></a>
+        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/instagram.png') }}" width="30" alt="Instagram"></a>
+        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/linkedin.png') }}" width="30" alt="LinkedIn"></a>
+        <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/telegrama.png') }}" width="30" alt="Telegram"></a>
+    </div>
+    </div>
+
+</div>
+</section>
+
+</body>
+</html>

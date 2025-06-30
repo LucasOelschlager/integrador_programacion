@@ -22,30 +22,23 @@
         <li class="links dropdown">
           <a href="{{ url_for('cursos') }}" aria-haspopup="true" aria-expanded="false">CURSOS</a>
           <ul class="submenu">
-            <li><a href="#">PROGRAMACION</a></li>
-            <li><a href="#">COCINA</a></li>
-            <li><a href="#">FINANZAS</a></li>
-            <li><a href="#">INTELIGENCIA ARTIFICIAL</a></li>
+            <li><a href="{{ url_for('curso_cpp') }}">C++</a></li>
+            <li><a href="{{ url_for('curso_python') }}">PYTHON</a></li>
+            <li><a href="{{ url_for('curso_php')}}">PHP</a></li>
+            <li><a href="{{url_for('inscribirse', id=1)}}">REACT</a></li>
+            <li><a href="{{ url_for('cursos') }}">MAS</a></li>
           </ul>
         </li>
 
         <li class="links dropdown">
           <a href="#" aria-haspopup="true" aria-expanded="false">EXTENSION</a>
           <ul class="submenu">
-            <li><a href="#">BUSQUEDA LABORAL</a></li>
+            <li><a href="https://ar.indeed.com/">BUSQUEDA LABORAL</a></li>
             <li><a href="{{ url_for('blog')}}">BLOG</a></li>
           </ul>
         </li>
 
-        <li class="links dropdown">
-          <a href="#" aria-haspopup="true" aria-expanded="false">SEMINARIO</a>
-          <ul class="submenu">
-            <li><a href="#">SEMINARIO PYTHON</a></li>
-            <li><a href="#">SEMINARIO ECONOMIA</a></li>
-          </ul>
-        </li>
-
-        <li class="links"><a href="#">SOBRE NOSOTROS</a></li>
+        <li class="links"><a href="{{ url_for('sobreNosotros') }}">SOBRE NOSOTROS</a></li>
         <li class="links"><a href="{{ url_for('contacto') }}">CONTACTO</a></li>
 
         {% if session.logged_in %}
@@ -120,22 +113,31 @@
           </a>
         </div>
         <div class="destacados">
-          <h4>Curso de cocina</h4>
-          <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/cocina.jpg') }}"
-              alt="Ir a los cursos de cocina" class="cursos-img" />
+          <h4>Curso Oracle</h4>
+          <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/oracle.jpg') }}"
+              alt="Ir curso oracle" class="cursos-img" />
           </a>
         </div>
         <div class="destacados">
-          <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/cocina.jpg') }}"
+          <a href="#"><img src="{{ url_for('static', filename='img/imagenes-cursos/base de datos.png') }}"
               alt="Ir a los cursos de Ingles" class="cursos-img" /></a>
-          <h4>Curso de Ingles</h4>
+          <h4>Curso Mysql</h4>
         </div>
       </section>
     </section>
     <!--FIN SECCION 2-->
 
-    <section>
-      <!--SECCION PUBLICIDAD-->
+    
+      <section class="inscripcion-banner d-flex align-items-center justify-content-center text-center text-white">
+  <div class="container">
+    <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">
+      ¡INSCRIPCIONES ABIERTAS 2025!
+    </h1>
+    <p class="lead animate__animated animate__fadeInUp">Sumate a los cursos más elegidos y comenzá tu camino hoy.</p>
+    <a href="{{ url_for('cursos') }}" class="btn btn-outline-light btn-lg mt-3 animate__animated animate__fadeInUp">Ver Cursos</a>
+  </div>
+</section>
+      <!--SECCION PUBLICIDAD
       <div class="imgPublicidad">
         <h1> ¡INSCRIPCIONES ABIERTAS 2025!</h1>
       </div>
@@ -145,7 +147,7 @@
     </div>
     <!--INICIO SECCION 3-->
     <section class="fondoSeccion">
-      <!--INICIO=Iconos y texto-->
+      <!--INICIO=Iconos y texto-
       <div class="gridPadre">
 
         <div class="itemIcono">
@@ -179,6 +181,37 @@
       </div>
     </section>
     <!--FIN SECCION 3-->
+<section class="py-5 bg-black">
+  <div class="container text-white">
+    <div class="row text-center g-4">
+
+      <div class="col-6 col-md-3">
+        <img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/cronografo.png') }}" class="img-fluid mb-3" alt="Aprende a tu ritmo">
+        <h5>Aprendé a tu ritmo</h5>
+        <p class="small fs-5">Disfrutá aprendiendo desde casa, sin horarios y a tu ritmo.</p>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/entrenamiento.png') }}" class="img-fluid mb-3" alt="Comparte ideas">
+        <h5>Compartí ideas</h5>
+        <p class="small fs-5">Preguntá, opiná y compartí tu experiencia con otros estudiantes.</p>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/modelo-a-seguir.png') }}" class="img-fluid mb-3" alt="Profesores expertos">
+        <h5>Profesores expertos</h5>
+        <p class="small fs-5">Aprendé de profesionales apasionados y con experiencia.</p>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <img src="{{ url_for('static', filename='img/imagenes-cursos/iconos/certificado.png') }}" class="img-fluid mb-3" alt="Certificado">
+        <h5>Certificado oficial</h5>
+        <p class="small fs-5">Obtené un certificado personalizado y compartilo donde quieras.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
     <!--INICIO SECCION 4-->
     <section class="seccionFont"><!--PRUEBITA DE LINEA PARA SEPARAR-->
