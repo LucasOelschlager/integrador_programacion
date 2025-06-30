@@ -20,7 +20,7 @@
             class="cursos-img"
           />
         </figure>
-        <div class="content">
+        <div class="content" id="1">
           <h2>React desde Cero</h2>
           <p>
             Aprendé a crear aplicaciones web modernas y dinámicas utilizando
@@ -31,7 +31,9 @@
             desarrollador frontend. ¡Sumate y llevá tus habilidades al siguiente
             nivel!
           </p>
-          <a href="#" class="button">Inscribirse</a>
+          <a href="{{url_for('inscribirse', id=1)}}" class="button"
+            >Inscribirse</a
+          >
         </div>
       </div>
       <div class="card">
@@ -72,7 +74,7 @@
             de datos e inteligencia artificial. ¡Sumate y empezá a programar con
             Python!
           </p>
-          <a href="/pages/cursoPython.html" class="button">Inscribirse</a>
+          <a href="{{ url_for('curso_python') }}" class="button">Inscribirse</a>
         </div>
       </div>
       <div class="card">

@@ -190,6 +190,14 @@ def admin():
     datos = resultado.fetchall()
     return render_template('crud.html', datos=datos)
 
+@app.route('/inscribirse/<int:id>')
+def inscribirse(id):
+    resultado = db.session.execute(text('SELECT * FROM cursos WHERE id_curso = :id'), {'id': id})
+    curso = resultado.fetchone()
+    if not curso:
+        return "Curso no encontrado", 404
+    return render_template('inscribirse.html', curso=curso)
+
 
 @app.route('/blog')
 def blog():
