@@ -5,6 +5,7 @@ from datetime import datetime
 import hashlib
 from dotenv import load_dotenv
 import os
+import time
 
 # Solo cargar .env en desarrollo
 if os.path.exists('.env'):
@@ -130,38 +131,39 @@ def dashboard():
 @app.route('/registro', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        print("=== DEBUGGING REGISTRO ===")
+        print(f"Form data: {request.form}")
+        print(f"Method: {request.method}")
         nombre = request.form['name']
         apellido = request.form['apellido']
         email = request.form['email']
         contrasena = request.form['contrasena']
-        contrasena_confirm = request.form.get('contrasenaConfirm', '')
         documento = request.form['documento']
 
-        # Debug: imprimir datos recibidos
-        print(f"Datos recibidos:")
-        print(f"Nombre: {nombre}")
-        print(f"Apellido: {apellido}")
-        print(f"Email: {email}")
-        print(f"Documento: {documento}")
-        print(f"Contraseña: {'*' * len(contrasena)}")
+        # Verificar si el DNI ya existe
+        dni_check = db.session.execute(text("SELECT COUNT(*) as count FROM usuarios WHERE DNI = :dni"), {'dni': documento})
+        dni_existe = dni_check.fetchone().count > 0
 
-        # Validar que las contraseñas coincidan
-        if contrasena != contrasena_confirm:
-            print("Las contraseñas no coinciden.")
-            flash('Las contraseñas no coinciden.', 'error')
+        if dni_existe:
+            flash(f'❌ Error: El DNI {documento} ya está registrado en el sistema. Si ya tienes cuenta, inicia sesión.', 'error')
             return render_template('register.html')
 
-        print("Las contraseñas coinciden, procediendo con el registro...")
-        contrasena_encriptada = encriptar_contrasena(contrasena)
-        print(f"Contraseña encriptada: {contrasena_encriptada}")
+        # Verificar si el email ya existe
+        email_check = db.session.execute(text("SELECT COUNT(*) as count FROM usuarios WHERE email = :email"), {'email': email})
+        email_existe = email_check.fetchone().count > 0
 
-        insert_query = text("""
-            INSERT INTO usuarios (DNI, nombre, apellido, email, contrasena_hash, fecha_registro, rol)
-            VALUES(:DNI, :nombre, :apellido, :email, :contrasena_hash, :fecha_registro, :rol)
-        """)
+        if email_existe:
+            flash(f'❌ Error: El email {email} ya está registrado. Si ya tienes cuenta, inicia sesión.', 'error')
+            return render_template('register.html')
+
+        # Si llegamos aquí, no hay duplicados
+        contrasena_encriptada = encriptar_contrasena(contrasena)
+
         try:
-            print("Ejecutando la consulta de inserción...")
-            db.session.execute(insert_query, {
+            db.session.execute(text("""
+                INSERT INTO usuarios (DNI, nombre, apellido, email, contrasena_hash, fecha_registro, rol)
+                VALUES(:DNI, :nombre, :apellido, :email, :contrasena_hash, :fecha_registro, :rol)
+            """), {
                 'DNI': documento,
                 'nombre': nombre,
                 'apellido': apellido,
@@ -172,12 +174,14 @@ def register():
             })
             db.session.commit()
             print("Usuario registrado exitosamente.")
-            flash('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
+            flash('✅ ¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
             return redirect(url_for('login'))
+        
         except Exception as e:
-            print(f"Error al registrar el usuario: {e}")
-            flash(f'Error al registrar el usuario: error')
+            print(f"Error inesperado: {e}")
             db.session.rollback()
+            flash('❌ Error inesperado al registrar. Por favor, intenta nuevamente.', 'error')
+    
     return render_template('register.html')
 
 @app.route('/admin/<int:dni>', methods=['PUT', 'DELETE'])
