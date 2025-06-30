@@ -28,7 +28,7 @@ else:
     # Configuración para desarrollo local
     DB_HOST = os.getenv('MYSQL_HOST_LOCAL', 'localhost')
     DB_USER = os.getenv('MYSQL_USER_LOCAL', 'root')
-    DB_PASSWORD = os.getenv('MYSQL_PASSWORD_LOCAL', 'root')
+    DB_PASSWORD = os.getenv('MYSQL_PASSWORD_LOCAL', 'lucas1889')
     DB_NAME = os.getenv('MYSQL_DB_LOCAL', 'rosario_cursos')
 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
