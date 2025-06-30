@@ -6,14 +6,16 @@ import hashlib
 from dotenv import load_dotenv
 import os
 
-load_dotenv()  # Cargar variables de entorno desde el archivo .env
+# Solo cargar .env en desarrollo
+if os.path.exists('.env'):
+    load_dotenv()
 
 app = Flask(__name__, static_folder='../static')
 
 # CONFIGURACION DE LA BASE DE DATOS
 DB_HOST = os.getenv('MYSQL_HOST', 'localhost')
 DB_USER = os.getenv('MYSQL_USER', 'root')
-DB_PASSWORD = os.getenv('MYSQL_PASSWORD', 'lucas1889')
+DB_PASSWORD = os.getenv('MYSQL_PASSWORD')
 DB_NAME = os.getenv('MYSQL_DB', 'rosario_cursos')
 
 if not DB_PASSWORD:
@@ -22,7 +24,7 @@ if not DB_PASSWORD:
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = os.getenv('SECRET_KEY', 'lucas1889')
+app.secret_key = os.getenv('SECRET_KEY', 'fallback-secret-key')
 
 db = SQLAlchemy(app)
 
