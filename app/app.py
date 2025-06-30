@@ -191,6 +191,10 @@ def admin():
     return render_template('crud.html', datos=datos)
 
 
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
 @app.route('/cursos')
 def cursos():
     return render_template('cursos.html')
@@ -225,7 +229,6 @@ def curso_html():
 @app.route('/curso-css')
 def curso_css():
     return render_template('cursocss.html')
-
 
 @app.route('/curso-js')
 def curso_js():
