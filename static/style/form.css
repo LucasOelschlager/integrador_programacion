@@ -1,4 +1,5 @@
-body {
+/* 
+body { 
   background: #333391;
   background: radial-gradient(
     circle,
@@ -12,6 +13,110 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.invalid {
+  border: solid 1px red;
+  box-shadow: 0 0 10px red;
+}
+.error {
+  color: red;
+  display: block;
+}
+
+.form-register {
+  width: 400px;
+  background: #24303c;
+  padding: 30px;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 5px;
+  font-family: "calibri";
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+}
+
+.form-register h4 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls {
+  width: 100%;
+  background: #24303c;
+  padding: 10px;
+  border-radius: 9px;
+
+  border: 3px solid #1f53c5;
+  font-family: "calibri";
+  font-size: 15px;
+  color: white;
+}
+
+.btnVolver {
+  width: 150px;
+  text-align: center;
+  background: #1f53c5;
+  padding: 10px;
+  border-radius: 9px;
+  font-family: "calibri";
+  font-size: 15px;
+  color: white;
+
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .form-register {
+    width: 90%;
+  }
+
+  body {
+    height: 100vh;
+  }
+  .btnVolver {
+    width: 150px;
+    position: absolute;
+    top: 0;
+    left: 25px;
+    margin-top: 20px;
+  }
+  .controls {
+    font-size: 14px;
+  }
+  .form-register h4 {
+    font-size: 20px;
+    margin: auto;
+  }
+  .form {
+    flex-direction: column;
+  }
+}
+*/
+body {
+  background: #333391;
+  background: radial-gradient(
+    circle,
+    rgba(51, 51, 145, 1) 1%,
+    rgba(4, 4, 59, 1) 83%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 .invalid {
   border: solid 1px red;
