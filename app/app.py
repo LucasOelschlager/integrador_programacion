@@ -155,6 +155,81 @@ def register():
             db.session.rollback()
     return render_template('register.html')
 
+@app.route('/admin/<int:dni>', methods=['PUT', 'DELETE'])
+def crud(dni):
+        if request.method == 'PUT':
+                data = request.get_json()
+                nombre = data.get('nombre')
+                apellido = data.get('apellido')
+                email = data.get('email')
+                try:
+                    db.session.execute(
+                        text("UPDATE usuarios SET nombre=:nombre, apellido=:apellido, email=:email WHERE DNI=:dni"),
+                        {'nombre': nombre, 'apellido': apellido, 'email': email, 'dni': dni}
+                    )
+                    db.session.commit()
+                    return {'mensaje': 'Usuario actualizado correctamente.'}
+                except Exception as e:
+                    db.session.rollback()
+                    return {'mensaje': f'Error al actualizar: {e}'}, 500
+
+        if request.method == 'DELETE':
+            try:
+                db.session.execute(
+                    text("DELETE FROM usuarios WHERE DNI=:dni"),
+                    {'dni': dni}
+                )
+                db.session.commit()
+                return {'mensaje': 'Inscripción eliminada correctamente.'}
+            except Exception as e:
+                db.session.rollback()
+                return {'mensaje': f'Error al eliminar: {e}'}, 500
+@app.route('/admin')
+def admin():
+    resultado = db.session.execute(text('SELECT DNI, nombre, apellido, email FROM usuarios'))
+    datos = resultado.fetchall()
+    return render_template('crud.html', datos=datos)
+
+
+@app.route('/cursos')
+def cursos():
+    return render_template('cursos.html')
+@app.route('/inscripcion')
+def inscripcion():
+    return render_template('pages/Inscripcion.html')
+
+@app.route('/curso-cpp')
+def curso_cpp():
+    return render_template('cursoC++.html')
+
+@app.route('/curso-net')
+def curso_net():
+    return render_template('cursoNet.html')
+
+@app.route('/curso-php')
+def curso_php():
+    return render_template('cursoPHP.html')
+
+@app.route('/curso-python')
+def curso_python():
+    return render_template('cursoPython.html')
+
+@app.route('/curso-java')
+def curso_java():
+    return render_template('cursoJava.html')
+
+@app.route('/curso-html')
+def curso_html():
+    return render_template('cursohtml.html')
+
+@app.route('/curso-css')
+def curso_css():
+    return render_template('cursocss.html')
+
+
+@app.route('/curso-js')
+def curso_js():
+    return render_template('cursoJs.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
