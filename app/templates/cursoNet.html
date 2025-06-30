@@ -4,56 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/cursos.css" />
+    <link rel="stylesheet" href="{{url_for('static', filename='style/cursos.css')}}" />
     <title>Document</title>
 </head>
 <body>
     <div class="container">
         <div class="card">
             <figure>
-                <img src="/img/imagenes-cursos/cursopython.jpg">
+                <img src="{{ url_for('static', filename='/img/imagenes-cursos/nett.png') }}">
             </figure>
             <div class="content">
-                <h2>PROGRAMACION PYTHON BASICO</h2>
+                <h2>PROGRAMACION .NET BASICO</h2>
                 <P>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum alias soluta 
                     praesentium fuga atque corrupti rerum explicabo voluptatem dicta necessitatibus.</P>
-                <a href="#" class="button">Inscribite</a>
+                <a href="{{ url_for('inscripcion') }}" class="button">Inscribite</a>
 
             </div>
 
         </div>
         <div class="card">
             <figure>
-                <img src="/img/imagenes-cursos/cursopython.jpg">
+                <img src="{{ url_for('static', filename='/img/imagenes-cursos/nett.png') }}">
             </figure>
             <div class="content">
-                <h2>PROGRAMACION PYTHON INTERMEDIO</h2>
+                <h2>PROGRAMACION .NET INTERMEDIO</h2>
                 <P>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum alias soluta 
                     praesentium fuga atque corrupti rerum explicabo voluptatem dicta necessitatibus.</P>
-                <a href="#" class="button">Inscribite</a>
+                <a href="{{ url_for('inscripcion') }}" class="button">Inscribite</a>
 
             </div>
 
         </div>
         <div class="card">
             <figure>
-                <img src="/img/imagenes-cursos/cursopython.jpg">
+                <img src="{{ url_for('static', filename='/img/imagenes-cursos/nett.png') }}">
             </figure>
             <div class="content">
-                <h2>PROGRAMACION PYTHON AVANZADO</h2>
+                <h2>PROGRAMACION .NET AVANZADO</h2>
                 <P>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum alias soluta 
                     praesentium fuga atque corrupti rerum explicabo voluptatem dicta necessitatibus.</P>
-                <a href="#" class="button">Leer mas</a>
+                <a href="{{ url_for('inscripcion') }}" class="button">Inscribite</a>
 
             </div>
 
         </div>
-    
-      
-       
-       
-      
-        
-    </div>
 </body>
 </html>
