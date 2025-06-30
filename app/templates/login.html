@@ -1,38 +1,52 @@
-// filepath: c:\Users\laure\Desktop\integrador_programacion\app\templates\login.html
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/login.css')}}"
+    />
+    <title>Iniciar Sesión</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css')}}" />
-  <title>Iniciar Sesión</title>
-</head>
+  <body>
+    <div class="container">
+      <form action="{{ url_for('login') }}" method="POST" class="form">
+        <h2>Iniciar Sesión</h2>
+        <div class="input_container">
+          <label for="email_input">Email:</label>
+          <input type="email" name="email" id="email_input" required />
+          <p class="error" id="error_email" style="display: none"></p>
 
-<body>
-  <div class="container">
-    <form action="{{ url_for('login') }}" method="POST" class="form">
-      <h2>Iniciar Sesión</h2>
-      <div class="input_container">
-        <label for="email_input">Email:</label>
-        <input type="email" name="email" id="email_input" required />
-        <p class="error" id="error_email" style="display: none"></p>
+          <label for="password_input">Contraseña:</label>
+          <input
+            type="password"
+            name="contrasena"
+            id="password_input"
+            required
+          />
+          <p class="error" id="error_password" style="display: none"></p>
+        </div>
 
-        <label for="password_input">Contraseña:</label>
-        <input type="password" name="contrasena" id="password_input" required />
-        <p class="error" id="error_password" style="display: none"></p>
-      </div>
+        <button type="submit">Iniciar Sesión</button>
 
-      <button type="submit">Iniciar Sesión</button>
+        <div class="form-links">
+          <p>
+            ¿No tienes cuenta?
+            <a href="{{ url_for('register') }}" class="register-link"
+              >Regístrate aquí</a
+            >
+          </p>
+          <p>
+            <a href="{{ url_for('index') }}" class="back-link"
+              >← Volver al inicio</a
+            >
+          </p>
+        </div>
+      </form>
+    </div>
 
-      <div class="form-links">
-        <p>¿No tienes cuenta? <a href="{{ url_for('register') }}" class="register-link">Regístrate aquí</a></p>
-        <p><a href="{{ url_for('index') }}" class="back-link">← Volver al inicio</a></p>
-      </div>
-    </form>
-  </div>
-
-  <script src="{{ url_for('static', filename='logic/validacion_login.js') }}"></script>
-</body>
-
+    <script src="{{ url_for('static', filename='logic/validacion_login.js') }}"></script>
+  </body>
 </html>
