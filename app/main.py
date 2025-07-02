@@ -5,15 +5,6 @@ from datetime import datetime
 import hashlib
 from dotenv import load_dotenv
 import os
-<<<<<<< HEAD:app/app.py
-import time
-
-if os.path.exists('.env'):
-    load_dotenv()
-
-app = Flask(__name__, static_folder='../static')
-
-=======
 
 app = Flask(__name__, static_folder='../static')
 
@@ -22,7 +13,6 @@ if os.path.exists('.env'):
     load_dotenv()
 
 # Configuración de la base de datos
->>>>>>> 4808463eff021b987110d538d7a605d01c0b160f:app/main.py
 is_production = os.getenv('VERCEL') == '1'
 
 if is_production:
@@ -51,18 +41,9 @@ def encriptar_contrasena(contrasena):
 def verificar_contrasena(contrasena, contrasena_hash):
     return hashlib.sha256(contrasena.encode()).hexdigest() == contrasena_hash
 
-<<<<<<< HEAD:app/app.py
-@app.route('/usuarios')
-def mostrar_usuarios():
-    resultado = db.session.execute(text('SELECT * FROM usuarios'))
-    usuarios = resultado.fetchall()
-    return str(usuarios)
-
-=======
 from routes.cursos_rutas import registrar_rutas_cursos
 registrar_rutas_cursos(app)
 # ==================== RUTAS PRINCIPALES ====================
->>>>>>> 4808463eff021b987110d538d7a605d01c0b160f:app/main.py
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -189,64 +170,14 @@ def inscribirse(id):
     curso = resultado.fetchone()
     if not curso:
         return "Curso no encontrado", 404
-<<<<<<< HEAD:app/app.py
-    if request.method == 'POST':
-        if 'user_id' not in session:
-            flash('❌ Debes iniciar sesión para inscribirte.', 'warning')
-            return redirect(url_for('login'))
-        dni_usuario = session['user_id']
-        existe = db.session.execute(
-            text("SELECT 1 FROM usuarios_cursos WHERE id_curso = :id_curso AND dni_usuario = :dni_usuario"),
-            {'id_curso': id, 'dni_usuario': dni_usuario}
-        ).fetchone()
-        if existe:
-            flash('❌ Ya estás inscripto en este curso.', 'warning')
-            return redirect(url_for('dashboard'))
-        fecha_inicio = datetime.now().date()
-        modalidad = "Online"
-        estado_activo = 1
-        try:
-            db.session.execute(
-                text("""
-                    INSERT INTO usuarios_cursos (id_curso, dni_usuario, fecha_inicio, modalidad, estado_activo)
-                    VALUES (:id_curso, :dni_usuario, :fecha_inicio, :modalidad, :estado_activo)
-                """),
-                {
-                    'id_curso': id,
-                    'dni_usuario': dni_usuario,
-                    'fecha_inicio': fecha_inicio,
-                    'modalidad': modalidad,
-                    'estado_activo': estado_activo
-                }
-            )
-            db.session.commit()
-            flash('✅ Inscripción realizada con éxito.', 'success')
-            return redirect(url_for('dashboard'))
-        except Exception as e:
-            db.session.rollback()
-            flash(f'❌ Error al inscribirse: {e}', 'error')
-            return redirect(url_for('inscribirse', id=id))
-    return render_template('inscribirse.html', curso=curso)
-=======
     return render_template('cursos/inscribirse.html', curso=curso)
->>>>>>> 4808463eff021b987110d538d7a605d01c0b160f:app/main.py
 
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
 
-<<<<<<< HEAD:app/app.py
-@app.route('/cursos')
-def cursos():
-    return render_template('cursos.html')
-
-@app.route('/inscripcion')
-def inscripcion():
-    return render_template('pages/Inscripcion.html')
-=======
 @app.route('/mi_perfil')
 def mi_perfil():
->>>>>>> 4808463eff021b987110d538d7a605d01c0b160f:app/main.py
 
     if 'user_id' not in session:
         flash('Debes iniciar sesión para acceder a tu perfil.', 'warning')
