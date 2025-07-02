@@ -173,7 +173,7 @@ def inscribirse(id):
         return "Curso no encontrado", 404
     if request.method == 'POST':
         if 'user_id' not in session:
-            flash('Debes iniciar sesión para inscribirte.', 'warning')
+            flash('❌ Debes iniciar sesión para inscribirte.', 'warning')
             return redirect(url_for('login'))
         dni_usuario = session['user_id']
         existe = db.session.execute(
@@ -181,8 +181,8 @@ def inscribirse(id):
             {'id_curso': id, 'dni_usuario': dni_usuario}
         ).fetchone()
         if existe:
-            flash('Ya estás inscripto en este curso.', 'warning')
-            return redirect(url_for('cursos'))
+            flash('❌ Ya estás inscripto en este curso.', 'warning')
+            return redirect(url_for('dashboard'))
         fecha_inicio = datetime.now().date()
         modalidad = "Online"
         estado_activo = 1
