@@ -24,27 +24,24 @@
         style="width: 22rem; background: #1a1a1a; color: #fff; border: none"
       >
         <img
-          src="{{ url_for('static', filename='img/imagenes-cursos/cursophp.png') }}"
+          src="{{ url_for('static', filename='img/imagenes-cursos/' ~ curso.imagen) }}"
           class="card-img-top"
           alt="Imagen del curso"
           style="object-fit: cover; height: 180px; background: #111"
         />
         <div class="card-body">
-          <h5 class="card-title">Programación PHP Básico</h5>
-          <p class="card-text">
-            Aprendé los fundamentos de PHP y comenzá tu camino en el desarrollo
-            web backend.
-          </p>
+          <h5 class="card-title">{{ curso.nombre }}</h5>
+          <p class="card-text">{{ curso.descripcion }}</p>
         </div>
         <ul class="list-group list-group-flush" style="background: #1a1a1a">
           <li class="list-group-item" style="background: #222; color: #fff">
-            Duración: 8 semanas
+            Duración: {{ curso.duracion }}
           </li>
           <li class="list-group-item" style="background: #222; color: #fff">
             Modalidad: Virtual
           </li>
           <li class="list-group-item" style="background: #222; color: #fff">
-            Nivel: Inicial
+            Precio: ${{ curso.precio }}
           </li>
         </ul>
         <div class="card-body d-flex flex-column align-items-center">

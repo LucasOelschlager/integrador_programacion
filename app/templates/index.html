@@ -15,9 +15,14 @@
 <body>
   <!--INICIO HEADER-->
   <header> 
+<<<<<<< HEAD
 
       <nav id="navbar">
               <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo UTN" class="logo-img" /></a>
+=======
+    <nav id="navbar">
+      <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo UTN" class="logo-img" /></a>
+>>>>>>> 92bf5763d7ff28b4637247c7d5518adada66d51d
       <ul class="menu visible">
         <li class="links dropdown">
           <a href="{{ url_for('cursos') }}" aria-haspopup="true" aria-expanded="false">CURSOS</a>
@@ -38,7 +43,11 @@
           </ul>
         </li>
 
+<<<<<<< HEAD
         <li class="links"><a href="{{ url_for('sobreNosotros') }}">SOBRE NOSOTROS</a></li>
+=======
+        <li class="links"><a href="#">SOBRE NOSOTROS</a></li>
+>>>>>>> 92bf5763d7ff28b4637247c7d5518adada66d51d
         <li class="links"><a href="{{ url_for('contacto') }}">CONTACTO</a></li>
 
         {% if session.logged_in %}
