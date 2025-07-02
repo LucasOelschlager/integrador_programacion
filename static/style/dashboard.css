@@ -95,3 +95,24 @@ body {
   color: #155724;
   border: 1px solid #c3e6cb;
 }
+.volver-btn {
+  background: linear-gradient(90deg, #e67e22 0%, #e74c3c 100%);
+  color: #fff;
+  padding: 0.7rem 2rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 25px;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 14px rgba(231, 76, 60, 0.18);
+  cursor: pointer;
+  outline: none;
+}
+
+.volver-btn:hover,
+.volver-btn:focus {
+  background: linear-gradient(90deg, #e74c3c 0%, #e67e22 100%);
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.28);
+  transform: translateY(-2px) scale(1.06);
+}
