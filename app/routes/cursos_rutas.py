@@ -1,13 +1,44 @@
-from flask import render_template
+from flask import render_template, session, flash, redirect, url_for
+from sqlalchemy import text
 
 # ==================== RUTAS DE CURSOS ====================
 
 
-def registrar_rutas_cursos(app):
+def registrar_rutas_cursos(app, db):
 
     @app.route('/cursos')
     def cursos():
         return render_template('cursos/cursos.html')
+    
+    @app.route('/mis-cursos')
+    def mis_cursos():
+        if 'user_id' not in session:
+            flash('Debes iniciar sesión para ver tus cursos.', 'warning')
+            return redirect(url_for('login'))
+        
+        resultado_usuario = db.session.execute(
+            text('SELECT nombre, apellido, email, DNI FROM usuarios WHERE DNI = :dni'), 
+            {'dni': session['user_id']}
+        )
+        usuario = resultado_usuario.fetchone()
+        
+        if not usuario:
+            flash('Usuario no encontrado.', 'error')
+            return redirect(url_for('index'))
+        
+        resultado_cursos = db.session.execute(
+            text('''
+                SELECT c.id_curso, c.nombre, c.fecha_inicio, c.fecha_finalizacion, c.precio,
+                       uc.fecha_inicio as fecha_inscripcion, uc.modalidad, uc.estado_activo
+                FROM cursos c
+                INNER JOIN usuarios_cursos uc ON c.id_curso = uc.id_curso 
+                WHERE uc.dni_usuario = :dni AND uc.estado_activo = 1
+            '''), 
+            {'dni': session['user_id']}
+        )
+        cursos = resultado_cursos.fetchall()
+
+        return render_template('cursos/mis_cursos.html', usuario=usuario, cursos=cursos)
 
     @app.route('/inscripcion')
     def inscripcion():

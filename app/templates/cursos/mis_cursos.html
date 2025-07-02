@@ -1,9 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-  </head>
-  <body></body>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Cursos - Rosario Cursos</title>
+</head>
+
+<body>
+  <main>
+    <h1>Mis Cursos</h1>
+    <p>Bienvenido, {{ usuario.nombre }} {{ usuario.apellido }}</p>
+
+    <h2>Lista de Cursos Inscritos</h2>
+    {% if cursos %}
+    <ul>
+      {% for curso in cursos %}
+      <li>
+        <h3>{{ curso.nombre }}</h3>
+        <p><strong>Modalidad:</strong> {{ curso.modalidad }}</p>
+        <p><strong>Precio:</strong> ${{ curso.precio }}</p>
+        <p><strong>Fecha de inicio del curso:</strong> {{ curso.fecha_inicio }}</p>
+        <p><strong>Fecha de finalización:</strong> {{ curso.fecha_finalizacion }}</p>
+        <p><strong>Fecha de inscripción:</strong> {{ curso.fecha_inscripcion }}</p>
+        {% if curso.estado_activo == 1 %}
+        <span style="color: green;">✅ Activo</span>
+        {% else %}
+        <span style="color: red;">❌ Inactivo</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Aún no tienes cursos inscritos.</p>
+    <a href="{{ url_for('cursos') }}">Explorar cursos disponibles</a>
+    {% endif %}
+
+    <p><a href="{{ url_for('dashboard') }}">Volver al dashboard</a></p>
+  </main>
+</body>
+
 </html>

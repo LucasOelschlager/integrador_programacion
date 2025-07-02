@@ -44,7 +44,7 @@ def verificar_contrasena(contrasena, contrasena_hash):
     return hashlib.sha256(contrasena.encode()).hexdigest() == contrasena_hash
 
 from routes.cursos_rutas import registrar_rutas_cursos
-registrar_rutas_cursos(app)
+registrar_rutas_cursos(app, db)
 # ==================== RUTAS PRINCIPALES ====================
 @app.route('/')
 def index():
