@@ -44,19 +44,13 @@
             Precio: ${{ curso.precio }}
           </li>
         </ul>
-        <div class="card-body d-flex flex-column align-items-center">
-          <a
-            href="#"
-            class="btn btn-warning w-100 mb-2"
-            style="font-weight: 600"
-            >Confirmar inscripción</a
-          >
-          <a
-            href="/cursos"
-            class="btn btn-outline-light w-100"
-            style="font-weight: 600"
-            >Volver a cursos</a
-          >
+       <form method="POST" action="{{ url_for('inscribirse', id=curso.id_curso) }}">
+            <input type="hidden" name="curso_id" value="{{ curso.id_curso }}">
+            <button type="submit" class="btn btn-warning w-100 mb-2" style="font-weight: 600">
+              Confirmar inscripción
+            </button>
+          </form>
+          <a href="/cursos" class="btn btn-outline-light w-100" style="font-weight: 600">Volver a cursos</a>
         </div>
       </div>
     </div>

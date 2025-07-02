@@ -304,7 +304,7 @@ footer {
     text-align: center;
     font-size: 1.2rem;
   }
-  
+
   .gridPadre {
     img {
       width: 100%;
@@ -357,7 +357,6 @@ footer {
     font-size: 1.2rem;
   }
 
-  
   .col-2 {
     width: 100%;
     margin-bottom: 20px;
@@ -381,7 +380,6 @@ footer {
   }
 }
 
-
 .inscripcion-banner {
   background-size: cover;
   background-position: center;
@@ -392,9 +390,11 @@ footer {
 .inscripcion-banner::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color:#1c1c1c; /* oscurece la imagen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1c1c1c; /* oscurece la imagen */
   z-index: 1;
 }
 
