@@ -36,6 +36,34 @@ h1 {
   padding: 32px 0;
 }
 
+.volver-btn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: auto;
+  height: auto;
+  display: flex;
+  padding: 7px 16px;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2fb4cc 60%, #1e90a3 100%);
+  border: 1.5px solid #2fb4cc;
+  box-shadow: 0 1px 8px #2fb4cc55;
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  z-index: 2;
+}
+.volver-btn:hover {
+  background: linear-gradient(135deg, #1e90a3 60%, #2fb4cc 100%);
+  color: #fff;
+  border-color: #1e90a3;
+  transform: scale(1.06);
+}
+
 .card {
   border-radius: 18px;
   background: linear-gradient(135deg, #181818 60%, #232526 100%);
