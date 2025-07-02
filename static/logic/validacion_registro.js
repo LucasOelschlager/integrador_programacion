@@ -141,6 +141,10 @@ form.addEventListener("submit", (e) => {
     documentoError.style.display = "none";
   }
 
+  if (!isValid) {
+    e.preventDefault();
+  }
+
   // Si todo es válido, enviar el formulario
   if (isValid) {
     form.submit();
