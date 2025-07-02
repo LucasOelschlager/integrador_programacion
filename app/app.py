@@ -271,5 +271,9 @@ def curso_css():
 def curso_js():
     return render_template('cursoJs.html')
 
+@app.route('/sobreNosotros')
+def sobreNosotros():
+    return render_template('sobrenosotros.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
