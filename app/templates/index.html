@@ -15,8 +15,9 @@
 <body>
   <!--INICIO HEADER-->
   <header> 
-      <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo UTN" class="logo-img" /></a>
 
+      <nav id="navbar">
+              <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo UTN" class="logo-img" /></a>
       <ul class="menu visible">
         <li class="links dropdown">
           <a href="{{ url_for('cursos') }}" aria-haspopup="true" aria-expanded="false">CURSOS</a>
