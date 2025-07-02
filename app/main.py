@@ -129,8 +129,8 @@ def register():
             flash('❌ Error inesperado al registrar. Por favor, intenta nuevamente.', 'error')
     return render_template('register.html')
 
-@app.route('/admin/<int:dni>', methods=['PUT', 'DELETE'])
-def crud(dni):
+@app.route('/admin/<int:id_curso>/<int:dni>', methods=['PUT', 'DELETE'])
+def crud_inscripcion(id_curso, dni):
     if request.method == 'PUT':
         data = request.get_json()
         nombre = data.get('nombre')
@@ -149,8 +149,8 @@ def crud(dni):
     if request.method == 'DELETE':
         try:
             db.session.execute(
-                text("DELETE FROM usuarios WHERE DNI=:dni"),
-                {'dni': dni}
+                text("DELETE FROM usuarios_cursos WHERE id_curso=:id_curso AND dni_usuario=:dni"),
+                {'id_curso': id_curso, 'dni': dni}
             )
             db.session.commit()
             return {'mensaje': 'Inscripción eliminada correctamente.'}
@@ -160,9 +160,14 @@ def crud(dni):
 
 @app.route('/admin')
 def admin():
-    resultado = db.session.execute(text('SELECT DNI, nombre, apellido, email FROM usuarios'))
+    resultado = db.session.execute(text('''
+        SELECT uc.id_curso, uc.dni_usuario, u.nombre, u.apellido, u.email, c.nombre AS curso
+        FROM usuarios_cursos uc
+        JOIN usuarios u ON uc.dni_usuario = u.DNI
+        JOIN cursos c ON uc.id_curso = c.id_curso
+    '''))
     datos = resultado.fetchall()
-    return render_template('crud.html', datos=datos)
+    return render_template('admin/crud.html', datos=datos)
 
 @app.route('/inscribirse/<int:id>', methods=['GET', 'POST'])
 def inscribirse(id):

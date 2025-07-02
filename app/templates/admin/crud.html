@@ -14,111 +14,76 @@
   </head>
   <body>
     <table class="table table-light">
-      <thead class="thead-light">
-        <tr>
-          <th>DNI</th>
-          <th>NOMBRE</th>
-          <th>APELLIDO</th>
-          <th>EMAIL</th>
-          <th>CURSO</th>
-          <th>ACCIONES</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for inscripto in datos %}
-        <tr id="fila-{{ inscripto[0] }}">
-          <td class="dni">{{ inscripto[0] }}</td>
-          <td class="nombre">{{ inscripto[1] }}</td>
-          <td class="apellido">{{ inscripto[2] }}</td>
-          <td class="email">{{ inscripto[3] }}</td>
-          <td class="curso">
-            {{ inscripto[4] if inscripto|length > 4 else '' }}
-          </td>
-          <td>
-            <button
-              class="btn btn-warning btn-sm"
-              onclick="abrirModalEditar('{{ inscripto[0] }}', '{{ inscripto[1] }}', '{{ inscripto[2] }}', '{{ inscripto[3] }}')"
-            >
-              Editar
-            </button>
-            <button
-              class="btn btn-danger btn-sm"
-              onclick="eliminarInscripto('{{ inscripto[0] }}')"
-            >
-              Eliminar
-            </button>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-      <!-- Modal de EdiciÃ³n -->
-      <div
-        class="modal fade"
-        id="modalEditar"
-        tabindex="-1"
-        aria-labelledby="modalEditarLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form onsubmit="guardarCambios(event)">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalEditarLabel">
-                  Editar Inscripto
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Cerrar"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <input type="hidden" id="dni-edit" />
-                <div class="mb-3">
-                  <label for="nombre-edit" class="form-label">Nombre</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nombre-edit"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="apellido-edit" class="form-label">Apellido</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="apellido-edit"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="email-edit" class="form-label">Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email-edit"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Cancelar
-                </button>
-                <button type="submit" class="btn btn-primary">
-                  Guardar Cambios
-                </button>
-              </div>
-            </form>
+  <thead class="thead-light">
+    <tr>
+      <th>DNI</th>
+      <th>NOMBRE</th>
+      <th>APELLIDO</th>
+      <th>EMAIL</th>
+      <th>CURSO</th>
+      <th>ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for inscripto in datos %}
+    <tr id="fila-{{ inscripto[0] }}-{{ inscripto[1] }}">
+    
+      <td class="dni">{{ inscripto[1] }}</td>
+      <td class="nombre">{{ inscripto[2] }}</td>
+      <td class="apellido">{{ inscripto[3] }}</td>
+      <td class="email">{{ inscripto[4] }}</td>
+      <td class="curso">{{ inscripto[5] }}</td>
+      <td>
+        <button
+          class="btn btn-warning btn-sm"
+          onclick="abrirModalEditar('{{ inscripto[0] }}', '{{ inscripto[1] }}', '{{ inscripto[2] }}', '{{ inscripto[3] }}', '{{ inscripto[4] }}')"
+        >
+          Editar
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          onclick="eliminarInscripto('{{ inscripto[0] }}', '{{ inscripto[1] }}')"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+      
+     <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form onsubmit="guardarCambios(event)">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEditarLabel">Editar Inscripto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="id_curso-edit" />
+          <input type="hidden" id="dni-edit" />
+          <div class="mb-3">
+            <label for="nombre-edit" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre-edit" required />
+          </div>
+          <div class="mb-3">
+            <label for="apellido-edit" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido-edit" required />
+          </div>
+          <div class="mb-3">
+            <label for="email-edit" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email-edit" required />
           </div>
         </div>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
     </table>
     <script src="{{ url_for('static', filename='logic/crud.js')}}"></script>
   </body>
