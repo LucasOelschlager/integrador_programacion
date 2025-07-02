@@ -1,3 +1,4 @@
+from routes.cursos_rutas import registrar_rutas_cursos
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
@@ -25,7 +26,7 @@ if is_production:
 else:
     DB_HOST = os.getenv('MYSQL_HOST_LOCAL', 'localhost')
     DB_USER = os.getenv('MYSQL_USER_LOCAL', 'root')
-    DB_PASSWORD = os.getenv('MYSQL_PASSWORD_LOCAL', 'lucas1889')
+    DB_PASSWORD = os.getenv('MYSQL_PASSWORD_LOCAL')
     DB_NAME = os.getenv('MYSQL_DB_LOCAL', 'rosario_cursos')
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
 
@@ -35,22 +36,27 @@ app.secret_key = os.getenv('SECRET_KEY', 'fallback-secret-key')
 
 db = SQLAlchemy(app)
 
+
 def encriptar_contrasena(contrasena):
     return hashlib.sha256(contrasena.encode()).hexdigest()
+
 
 def verificar_contrasena(contrasena, contrasena_hash):
     return hashlib.sha256(contrasena.encode()).hexdigest() == contrasena_hash
 
-from routes.cursos_rutas import registrar_rutas_cursos
-registrar_rutas_cursos(app)
+
+registrar_rutas_cursos(app, db)
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/contacto')
 def contacto():
     return render_template('contactoForm.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -61,7 +67,8 @@ def login():
         resultado = db.session.execute(usuario_query, {'email': email})
         usuario = resultado.fetchone()
         if not usuario:
-            flash('Este email no está registrado en el sistema. Por favor, regístrate primero.', 'error')
+            flash(
+                'Este email no está registrado en el sistema. Por favor, regístrate primero.', 'error')
             return render_template('login.html')
         if verificar_contrasena(contrasena, usuario.contrasena_hash):
             session['user_id'] = usuario.DNI
@@ -72,9 +79,11 @@ def login():
             flash(f'¡Bienvenido, {usuario.nombre}!', 'success')
             return redirect(url_for('dashboard'))
         else:
-            flash('Email o contraseña incorrectos. Por favor, inténtalo de nuevo.', 'error')
+            flash(
+                'Email o contraseña incorrectos. Por favor, inténtalo de nuevo.', 'error')
             return render_template('login.html')
     return render_template('login.html')
+
 
 @app.route('/logout')
 def logout():
@@ -82,12 +91,14 @@ def logout():
     flash('Has cerrado sesión correctamente.', 'success')
     return redirect(url_for('index'))
 
+
 @app.route('/dashboard')
 def dashboard():
     if 'logged_in' not in session:
         flash('Debes iniciar sesión para acceder al dashboard.', 'warning')
         return redirect(url_for('login'))
     return render_template('dashboard.html', user_name=session.get('user_name'))
+
 
 @app.route('/registro', methods=['GET', 'POST'])
 def register():
@@ -97,15 +108,20 @@ def register():
         email = request.form['email']
         contrasena = request.form['contrasena']
         documento = request.form['documento']
-        dni_check = db.session.execute(text("SELECT COUNT(*) as count FROM usuarios WHERE DNI = :dni"), {'dni': documento})
+        dni_check = db.session.execute(text(
+            "SELECT COUNT(*) as count FROM usuarios WHERE DNI = :dni"), {'dni': documento})
         dni_existe = dni_check.fetchone().count > 0
+
         if dni_existe:
-            flash(f'❌ Error: El DNI {documento} ya está registrado en el sistema. Si ya tienes cuenta, inicia sesión.', 'error')
+            flash(
+                f'❌ Error: El DNI {documento} ya está registrado en el sistema. Si ya tienes cuenta, inicia sesión.', 'error')
             return render_template('register.html')
-        email_check = db.session.execute(text("SELECT COUNT(*) as count FROM usuarios WHERE email = :email"), {'email': email})
+        email_check = db.session.execute(text(
+            "SELECT COUNT(*) as count FROM usuarios WHERE email = :email"), {'email': email})
         email_existe = email_check.fetchone().count > 0
         if email_existe:
-            flash(f'❌ Error: El email {email} ya está registrado. Si ya tienes cuenta, inicia sesión.', 'error')
+            flash(
+                f'❌ Error: El email {email} ya está registrado. Si ya tienes cuenta, inicia sesión.', 'error')
             return render_template('register.html')
         contrasena_encriptada = encriptar_contrasena(contrasena)
         try:
@@ -126,8 +142,10 @@ def register():
             return redirect(url_for('login'))
         except Exception as e:
             db.session.rollback()
-            flash('❌ Error inesperado al registrar. Por favor, intenta nuevamente.', 'error')
+            flash(
+                '❌ Error inesperado al registrar. Por favor, intenta nuevamente.', 'error')
     return render_template('register.html')
+
 
 @app.route('/admin/<int:id_curso>/<int:dni>', methods=['PUT', 'DELETE'])
 def crud_inscripcion(id_curso, dni):
@@ -138,7 +156,8 @@ def crud_inscripcion(id_curso, dni):
         email = data.get('email')
         try:
             db.session.execute(
-                text("UPDATE usuarios SET nombre=:nombre, apellido=:apellido, email=:email WHERE DNI=:dni"),
+                text(
+                    "UPDATE usuarios SET nombre=:nombre, apellido=:apellido, email=:email WHERE DNI=:dni"),
                 {'nombre': nombre, 'apellido': apellido, 'email': email, 'dni': dni}
             )
             db.session.commit()
@@ -149,7 +168,8 @@ def crud_inscripcion(id_curso, dni):
     if request.method == 'DELETE':
         try:
             db.session.execute(
-                text("DELETE FROM usuarios_cursos WHERE id_curso=:id_curso AND dni_usuario=:dni"),
+                text(
+                    "DELETE FROM usuarios_cursos WHERE id_curso=:id_curso AND dni_usuario=:dni"),
                 {'id_curso': id_curso, 'dni': dni}
             )
             db.session.commit()
@@ -157,6 +177,7 @@ def crud_inscripcion(id_curso, dni):
         except Exception as e:
             db.session.rollback()
             return {'mensaje': f'Error al eliminar: {e}'}, 500
+
 
 @app.route('/admin')
 def admin():
@@ -169,9 +190,11 @@ def admin():
     datos = resultado.fetchall()
     return render_template('admin/crud.html', datos=datos)
 
+
 @app.route('/inscribirse/<int:id>', methods=['GET', 'POST'])
 def inscribirse(id):
-    resultado = db.session.execute(text('SELECT * FROM cursos WHERE id_curso = :id'), {'id': id})
+    resultado = db.session.execute(
+        text('SELECT * FROM cursos WHERE id_curso = :id'), {'id': id})
     curso = resultado.fetchone()
     if not curso:
         return "Curso no encontrado", 404
@@ -182,7 +205,6 @@ def inscribirse(id):
             return redirect(url_for('login'))
         dni_usuario = session['user_id']
 
-        
         existe = db.session.execute(
             text("SELECT 1 FROM usuarios_cursos WHERE id_curso = :id_curso AND dni_usuario = :dni_usuario"),
             {'id_curso': id, 'dni_usuario': dni_usuario}
@@ -192,7 +214,7 @@ def inscribirse(id):
             return redirect(url_for('dashboard'))
 
         fecha_inicio = datetime.now().date()
-        modalidad = "Online"  
+        modalidad = "Online"
         estado_activo = 1
 
         try:
@@ -219,9 +241,11 @@ def inscribirse(id):
 
     return render_template('cursos/inscribirse.html', curso=curso)
 
+
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
+
 
 @app.route('/mi_perfil')
 def mi_perfil():
@@ -229,8 +253,9 @@ def mi_perfil():
     if 'user_id' not in session:
         flash('Debes iniciar sesión para acceder a tu perfil.', 'warning')
         return redirect(url_for('login'))
-    
-    resultado = db.session.execute(text('SELECT nombre, apellido, email, DNI, fecha_registro FROM usuarios WHERE DNI = :dni'), {'dni': session['user_id']})
+
+    resultado = db.session.execute(text(
+        'SELECT nombre, apellido, email, DNI, fecha_registro FROM usuarios WHERE DNI = :dni'), {'dni': session['user_id']})
 
     usuario = resultado.fetchone()
     if not usuario:
@@ -239,15 +264,18 @@ def mi_perfil():
 
     return render_template('mi_perfil.html', usuario=usuario)
 
+
 @app.route('/usuarios')
 def mostrar_usuarios():
     resultado = db.session.execute(text('SELECT * FROM usuarios'))
     usuarios = resultado.fetchall()
     return str(usuarios)
 
+
 @app.route('/sobreNosotros')
 def sobreNosotros():
     return render_template('sobrenosotros.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
