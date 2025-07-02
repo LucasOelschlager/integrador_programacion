@@ -42,8 +42,8 @@ def verificar_contrasena(contrasena, contrasena_hash):
     return hashlib.sha256(contrasena.encode()).hexdigest() == contrasena_hash
 
 from routes.cursos_rutas import registrar_rutas_cursos
-registrar_rutas_cursos(app, db)
-# ==================== RUTAS PRINCIPALES ====================
+registrar_rutas_cursos(app)
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -182,7 +182,7 @@ def inscribirse(id):
             return redirect(url_for('login'))
         dni_usuario = session['user_id']
 
-        # Verificar si ya está inscripto
+        
         existe = db.session.execute(
             text("SELECT 1 FROM usuarios_cursos WHERE id_curso = :id_curso AND dni_usuario = :dni_usuario"),
             {'id_curso': id, 'dni_usuario': dni_usuario}
@@ -192,7 +192,7 @@ def inscribirse(id):
             return redirect(url_for('dashboard'))
 
         fecha_inicio = datetime.now().date()
-        modalidad = "Online"  # O "Presencial"/"Hibrido" según corresponda
+        modalidad = "Online"  
         estado_activo = 1
 
         try:
