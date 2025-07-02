@@ -5,38 +5,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mis Cursos - Rosario Cursos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/mis_cursos.css') }}">
 </head>
 
 <body>
   <main>
-    <h1>Mis Cursos</h1>
-    <p>Bienvenido, {{ usuario.nombre }} {{ usuario.apellido }}</p>
+    <div class="header">
+      <h1>Mis Cursos</h1>
+      <p class="welcome-text">Bienvenido, {{ usuario.nombre }} {{ usuario.apellido }}</p>
+    </div>
 
-    <h2>Lista de Cursos Inscritos</h2>
-    {% if cursos %}
-    <ul>
-      {% for curso in cursos %}
-      <li>
-        <h3>{{ curso.nombre }}</h3>
-        <p><strong>Modalidad:</strong> {{ curso.modalidad }}</p>
-        <p><strong>Precio:</strong> ${{ curso.precio }}</p>
-        <p><strong>Fecha de inicio del curso:</strong> {{ curso.fecha_inicio }}</p>
-        <p><strong>Fecha de finalización:</strong> {{ curso.fecha_finalizacion }}</p>
-        <p><strong>Fecha de inscripción:</strong> {{ curso.fecha_inscripcion }}</p>
-        {% if curso.estado_activo == 1 %}
-        <span style="color: green;">✅ Activo</span>
-        {% else %}
-        <span style="color: red;">❌ Inactivo</span>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>Aún no tienes cursos inscritos.</p>
-    <a href="{{ url_for('cursos') }}">Explorar cursos disponibles</a>
-    {% endif %}
+    <div class="content">
+      <h2 class="section-title">Lista de Cursos Inscritos</h2>
 
-    <p><a href="{{ url_for('dashboard') }}">Volver al dashboard</a></p>
+      {% if cursos %}
+      <div class="courses-grid">
+        {% for curso in cursos %}
+        <div class="course-card">
+          <h3 class="course-title">{{ curso.nombre }}</h3>
+
+          <div class="course-info">
+            <strong>Modalidad:</strong>
+            <span>{{ curso.modalidad }}</span>
+          </div>
+
+          <div class="course-info">
+            <strong>Precio:</strong>
+            <span>${{ curso.precio }}</span>
+          </div>
+
+          <div class="course-info">
+            <strong>Inicio del curso:</strong>
+            <span>{{ curso.fecha_inicio }}</span>
+          </div>
+
+          <div class="course-info">
+            <strong>Finalización:</strong>
+            <span>{{ curso.fecha_finalizacion }}</span>
+          </div>
+
+          <div class="course-info">
+            <strong>Fecha de inscripción:</strong>
+            <span>{{ curso.fecha_inscripcion }}</span>
+          </div>
+
+          {% if curso.estado_activo == 1 %}
+          <div class="status active">
+            ✅ Activo
+          </div>
+          {% else %}
+          <div class="status inactive">
+            ❌ Inactivo
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <h3>¡Aún no tienes cursos inscritos!</h3>
+        <p>Explora nuestra amplia variedad de cursos y comienza tu aprendizaje hoy mismo.</p>
+        <a href="{{ url_for('cursos') }}" class="btn">Explorar Cursos Disponibles</a>
+      </div>
+      {% endif %}
+
+      <div class="back-link">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Volver al Dashboard</a>
+      </div>
+    </div>
   </main>
 </body>
 
