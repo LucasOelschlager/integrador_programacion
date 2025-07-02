@@ -1,71 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename='/style/dashboard.css')}}"
-    />
-    <title>Panel de Control - Rosario Cursos</title>
-  </head>
 
-  <body>
-    <div class="header">
-      <div class="welcome">¡Bienvenido, {{ user_name }}!</div>
-      <a href="{{ url_for('logout') }}" class="logout-btn">Cerrar Sesión</a>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{url_for('static', filename='/style/dashboard.css')}}" />
+  <title>Panel de Control - Rosario Cursos</title>
+</head>
 
-    <div class="container">
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %} {% for category, message in messages %}
-      <div class="alert alert-{{ category }}">{{ message }}</div>
-      {% endfor %} {% endif %} {% endwith %}
+<body>
+  <div class="header">
+    <div class="welcome">¡Bienvenido, {{ user_name }}!</div>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Cerrar Sesión</a>
+  </div>
 
-      <h1>Panel de Control</h1>
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %} {% endif %} {% endwith %}
 
-      <div class="dashboard-grid">
-        <div class="card">
-          <h3>Mis Cursos</h3>
-          <p>
-            Ve los cursos en los que estás inscrito y accede a tu contenido de
-            aprendizaje.
-          </p>
-          <a href="#" class="btn">Ver Mis Cursos</a>
-        </div>
+    <h1>Panel de Control</h1>
 
-        <div class="card">
-          <h3>Explorar Cursos</h3>
-          <p>Descubre nuevos cursos disponibles y amplía tus conocimientos.</p>
-          <a href="{{url_for('cursos')}}" class="btn">Explorar Cursos</a>
-        </div>
+    <div class="dashboard-grid">
+      <div class="card">
+        <h3>Mis Cursos</h3>
+        <p>
+          Ve los cursos en los que estás inscrito y accede a tu contenido de
+          aprendizaje.
+        </p>
+        <a href="#" class="btn">Ver Mis Cursos</a>
+      </div>
 
-        <div class="card">
-          <h3>Mi Perfil</h3>
-          <p>Actualiza tu información personal y gestiona tu cuenta.</p>
-          <a href="#" class="btn">Editar Perfil</a>
-        </div>
+      <div class="card">
+        <h3>Explorar Cursos</h3>
+        <p>Descubre nuevos cursos disponibles y amplía tus conocimientos.</p>
+        <a href="{{url_for('cursos')}}" class="btn">Explorar Cursos</a>
+      </div>
 
-        <div class="card">
-          <h3>Certificados</h3>
-          <p>
-            Descarga y visualiza los certificados de los cursos completados.
-          </p>
-          <a href="#" class="btn">Ver Certificados</a>
-        </div>
+      <div class="card">
+        <h3>Mi Perfil</h3>
+        <p>Actualiza tu información personal y gestiona tu cuenta.</p>
+        <a href=" {{ url_for('mi_perfil') }} " class="btn">Editar Perfil</a>
+      </div>
 
-        <div class="card">
-          <h3>Progreso</h3>
-          <p>Revisa tu progreso de aprendizaje y estadísticas de estudio.</p>
-          <a href="#" class="btn">Ver Progreso</a>
-        </div>
+      <div class="card">
+        <h3>Certificados</h3>
+        <p>
+          Descarga y visualiza los certificados de los cursos completados.
+        </p>
+        <a href="#" class="btn">Ver Certificados</a>
+      </div>
 
-        <div class="card">
-          <h3>Soporte</h3>
-          <p>¿Necesitas ayuda? Contacta con nuestro equipo de soporte.</p>
-          <a href="{{ url_for('contacto') }}" class="btn">Contactar</a>
-        </div>
+      <div class="card">
+        <h3>Progreso</h3>
+        <p>Revisa tu progreso de aprendizaje y estadísticas de estudio.</p>
+        <a href="#" class="btn">Ver Progreso</a>
+      </div>
+
+      <div class="card">
+        <h3>Soporte</h3>
+        <p>¿Necesitas ayuda? Contacta con nuestro equipo de soporte.</p>
+        <a href="{{ url_for('contacto') }}" class="btn">Contactar</a>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
