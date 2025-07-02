@@ -14,56 +14,68 @@
     <title>CONTACTO</title>
   </head>
   <body>
-    <section class="form-register">
-      <h4>Formulario de Consulta!</h4>
-      <form action="" class="form">
-        <label>
-          <em>Nombre completo: </em>
-          <input
-            class="controls"
-            type="text"
-            name="nombre"
-            placeholder="Ingrese su nombre completo"
-          />
-          <span></span>
-        </label>
-        <br /><br />
-        <label>
-          <em>Apellido: </em>
-          <input
-            class="controls"
-            type="text"
-            name="apellido"
-            placeholder="Ingrese su apellido"
-          />
-          <span></span>
-        </label>
-        <br /><br />
-        <label>
-          <em>Email:</em>
-          <input
-            class="controls"
-            type="email"
-            name="email"
-            placeholder="Ingrese su correo"
-          />
-          <span></span>
-        </label>
-        <br /><br />
-        <label>
-          <em>Haga su consulta!</em><br />
-          <textarea name="mensaje" rows="4" cols="40" class="controls">
-    Escriba su mensaje aquí</textarea
-          >
-        </label>
-        <br />
-        <div class="d-grid gap-2">
-          <button class="btn btn-primary" type="button">ENVIAR</button>
-        </div>
-      </form>
-    </section>
-    <a class="btnVolver" href="{{ url_for('index') }}">VOLVER A INICIO</a>
+<section class="form-register container bg-black p-4 rounded shadow mt-5">
+  <h4 class="mb-4 text-primary text-center">Formulario de Consulta!</h4>
 
-    <script src="{{ url_for('static', filename='logic/validacion_registro.js')}}"></script>
+  <form action="" class="form" id="miFormulario">
+    <label class="form-label d-block">
+      <em>Nombre completo:</em>
+      <input
+        class="controls form-control"
+        type="text"
+        id="nombre"
+        name="nombre"
+        placeholder="Ingrese su nombre completo"
+      />
+      <span id="error-nombre" class="text-danger small"></span>
+    </label>
+
+    <label class="form-label d-block mt-3">
+      <em>Apellido:</em>
+      <input
+        class="controls form-control"
+        type="text"
+        id="apellido"
+        name="apellido"
+        placeholder="Ingrese su apellido"
+      />
+      <span id="error-apellido" class="text-danger small"></span>
+    </label>
+
+    <label class="form-label d-block mt-3">
+      <em>Email:</em>
+      <input
+        class="controls form-control"
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Ingrese su correo"
+      />
+      <span id="error-email" class="text-danger small"></span>
+    </label>
+
+    <label class="form-label d-block mt-3">
+      <em>Haga su consulta!</em>
+      <textarea
+        name="mensaje"
+        rows="4"
+        cols="40"
+        id="mensaje"
+        class="controls form-control"
+        placeholder="Escriba su mensaje aquí"
+      ></textarea>
+    </label>
+
+    <div class="d-grid gap-2 mt-4">
+      <button class="btn btn-primary" type="submit">ENVIAR</button>
+    </div>
+  </form>
+  <div class="text-center mt-4">
+    <a class="btn btn-outline-secondary" href="{{ url_for('index') }}">VOLVER A INICIO</a>
+  </div>
+</section>
+
+
+    <script src="{{ url_for('static', filename='logic/form.js')}}"></script>
   </body>
 </html>
