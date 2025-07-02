@@ -5,6 +5,7 @@ from datetime import datetime
 import hashlib
 from dotenv import load_dotenv
 import os
+<<<<<<< HEAD:app/app.py
 import time
 
 if os.path.exists('.env'):
@@ -12,6 +13,16 @@ if os.path.exists('.env'):
 
 app = Flask(__name__, static_folder='../static')
 
+=======
+
+app = Flask(__name__, static_folder='../static')
+
+# Cargar variables de entorno
+if os.path.exists('.env'):
+    load_dotenv()
+
+# Configuración de la base de datos
+>>>>>>> 4808463eff021b987110d538d7a605d01c0b160f:app/main.py
 is_production = os.getenv('VERCEL') == '1'
 
 if is_production:
@@ -31,6 +42,7 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('SECRET_KEY', 'fallback-secret-key')
 
+# Inicializar SQLAlchemy
 db = SQLAlchemy(app)
 
 def encriptar_contrasena(contrasena):
@@ -39,12 +51,18 @@ def encriptar_contrasena(contrasena):
 def verificar_contrasena(contrasena, contrasena_hash):
     return hashlib.sha256(contrasena.encode()).hexdigest() == contrasena_hash
 
+<<<<<<< HEAD:app/app.py
 @app.route('/usuarios')
 def mostrar_usuarios():
     resultado = db.session.execute(text('SELECT * FROM usuarios'))
     usuarios = resultado.fetchall()
     return str(usuarios)
 
+=======
+from routes.cursos_rutas import registrar_rutas_cursos
+registrar_rutas_cursos(app)
+# ==================== RUTAS PRINCIPALES ====================
+>>>>>>> 4808463eff021b987110d538d7a605d01c0b160f:app/main.py
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -171,6 +189,7 @@ def inscribirse(id):
     curso = resultado.fetchone()
     if not curso:
         return "Curso no encontrado", 404
+<<<<<<< HEAD:app/app.py
     if request.method == 'POST':
         if 'user_id' not in session:
             flash('❌ Debes iniciar sesión para inscribirte.', 'warning')
@@ -208,11 +227,15 @@ def inscribirse(id):
             flash(f'❌ Error al inscribirse: {e}', 'error')
             return redirect(url_for('inscribirse', id=id))
     return render_template('inscribirse.html', curso=curso)
+=======
+    return render_template('cursos/inscribirse.html', curso=curso)
+>>>>>>> 4808463eff021b987110d538d7a605d01c0b160f:app/main.py
 
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
 
+<<<<<<< HEAD:app/app.py
 @app.route('/cursos')
 def cursos():
     return render_template('cursos.html')
@@ -220,38 +243,29 @@ def cursos():
 @app.route('/inscripcion')
 def inscripcion():
     return render_template('pages/Inscripcion.html')
+=======
+@app.route('/mi_perfil')
+def mi_perfil():
+>>>>>>> 4808463eff021b987110d538d7a605d01c0b160f:app/main.py
 
-@app.route('/curso-cpp')
-def curso_cpp():
-    return render_template('cursoC++.html')
+    if 'user_id' not in session:
+        flash('Debes iniciar sesión para acceder a tu perfil.', 'warning')
+        return redirect(url_for('login'))
+    
+    resultado = db.session.execute(text('SELECT nombre, apellido, email, DNI, fecha_registro FROM usuarios WHERE DNI = :dni'), {'dni': session['user_id']})
 
-@app.route('/curso-net')
-def curso_net():
-    return render_template('cursoNet.html')
+    usuario = resultado.fetchone()
+    if not usuario:
+        flash('Usuario no encontrado.', 'error')
+        return redirect(url_for('index'))
 
-@app.route('/curso-php')
-def curso_php():
-    return render_template('cursoPHP.html')
+    return render_template('mi_perfil.html', usuario=usuario)
 
-@app.route('/curso-python')
-def curso_python():
-    return render_template('cursoPython.html')
-
-@app.route('/curso-java')
-def curso_java():
-    return render_template('cursoJava.html')
-
-@app.route('/curso-html')
-def curso_html():
-    return render_template('cursohtml.html')
-
-@app.route('/curso-css')
-def curso_css():
-    return render_template('cursocss.html')
-
-@app.route('/curso-js')
-def curso_js():
-    return render_template('cursoJs.html')
+@app.route('/usuarios')
+def mostrar_usuarios():
+    resultado = db.session.execute(text('SELECT * FROM usuarios'))
+    usuarios = resultado.fetchall()
+    return str(usuarios)
 
 @app.route('/sobreNosotros')
 def sobreNosotros():
