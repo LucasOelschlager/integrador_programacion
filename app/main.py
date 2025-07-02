@@ -8,11 +8,11 @@ import os
 
 app = Flask(__name__, static_folder='../static')
 
-# Cargar variables de entorno
+
 if os.path.exists('.env'):
     load_dotenv()
 
-# Configuración de la base de datos
+
 is_production = os.getenv('VERCEL') == '1'
 
 if is_production:
@@ -32,7 +32,7 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('SECRET_KEY', 'fallback-secret-key')
 
-# Inicializar SQLAlchemy
+
 db = SQLAlchemy(app)
 
 def encriptar_contrasena(contrasena):
@@ -43,7 +43,7 @@ def verificar_contrasena(contrasena, contrasena_hash):
 
 from routes.cursos_rutas import registrar_rutas_cursos
 registrar_rutas_cursos(app)
-# ==================== RUTAS PRINCIPALES ====================
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -175,6 +175,48 @@ def inscribirse(id):
     curso = resultado.fetchone()
     if not curso:
         return "Curso no encontrado", 404
+
+    if request.method == 'POST':
+        if 'user_id' not in session:
+            flash('Debes iniciar sesión para inscribirte.', 'warning')
+            return redirect(url_for('login'))
+        dni_usuario = session['user_id']
+
+        # Verificar si ya está inscripto
+        existe = db.session.execute(
+            text("SELECT 1 FROM usuarios_cursos WHERE id_curso = :id_curso AND dni_usuario = :dni_usuario"),
+            {'id_curso': id, 'dni_usuario': dni_usuario}
+        ).fetchone()
+        if existe:
+            flash('Ya estás inscripto en este curso.', 'warning')
+            return redirect(url_for('dashboard'))
+
+        fecha_inicio = datetime.now().date()
+        modalidad = "Online"  # O "Presencial"/"Hibrido" según corresponda
+        estado_activo = 1
+
+        try:
+            db.session.execute(
+                text("""
+                    INSERT INTO usuarios_cursos (id_curso, dni_usuario, fecha_inicio, modalidad, estado_activo)
+                    VALUES (:id_curso, :dni_usuario, :fecha_inicio, :modalidad, :estado_activo)
+                """),
+                {
+                    'id_curso': id,
+                    'dni_usuario': dni_usuario,
+                    'fecha_inicio': fecha_inicio,
+                    'modalidad': modalidad,
+                    'estado_activo': estado_activo
+                }
+            )
+            db.session.commit()
+            flash('✅ Inscripción realizada con éxito.', 'success')
+            return redirect(url_for('dashboard'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'❌ Error al inscribirse: {e}', 'error')
+            return redirect(url_for('inscribirse', id=id))
+
     return render_template('cursos/inscribirse.html', curso=curso)
 
 @app.route('/blog')
