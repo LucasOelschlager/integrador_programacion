@@ -58,40 +58,6 @@ def contacto():
     return render_template('contactoForm.html')
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        contrasena = request.form['contrasena']
-        usuario_query = text("SELECT * FROM usuarios WHERE email = :email")
-        resultado = db.session.execute(usuario_query, {'email': email})
-        usuario = resultado.fetchone()
-        if not usuario:
-            flash(
-                'Este email no está registrado en el sistema. Por favor, regístrate primero.', 'error')
-            return render_template('login.html')
-        if verificar_contrasena(contrasena, usuario.contrasena_hash):
-            session['user_id'] = usuario.DNI
-            session['user_name'] = usuario.nombre
-            session['user_email'] = usuario.email
-            session['user_rol'] = usuario.rol
-            session['logged_in'] = True
-            flash(f'¡Bienvenido, {usuario.nombre}!', 'success')
-            return redirect(url_for('dashboard'))
-        else:
-            flash(
-                'Email o contraseña incorrectos. Por favor, inténtalo de nuevo.', 'error')
-            return render_template('login.html')
-    return render_template('login.html')
-
-
-@app.route('/logout')
-def logout():
-    session.clear()
-    flash('Has cerrado sesión correctamente.', 'success')
-    return redirect(url_for('index'))
-
-
 @app.route('/dashboard')
 def dashboard():
     if 'logged_in' not in session:
@@ -146,6 +112,39 @@ def register():
                 '❌ Error inesperado al registrar. Por favor, intenta nuevamente.', 'error')
     return render_template('register.html')
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        contrasena = request.form['contrasena']
+        usuario_query = text("SELECT * FROM usuarios WHERE email = :email")
+        resultado = db.session.execute(usuario_query, {'email': email})
+        usuario = resultado.fetchone()
+        if not usuario:
+            flash(
+                'Este email no está registrado en el sistema. Por favor, regístrate primero.', 'error')
+            return render_template('login.html')
+        if verificar_contrasena(contrasena, usuario.contrasena_hash):
+            session['user_id'] = usuario.DNI
+            session['user_name'] = usuario.nombre
+            session['user_email'] = usuario.email
+            session['user_rol'] = usuario.rol
+            session['logged_in'] = True
+            flash(f'¡Bienvenido, {usuario.nombre}!', 'success')
+            return redirect(url_for('dashboard'))
+        else:
+            flash(
+                'Email o contraseña incorrectos. Por favor, inténtalo de nuevo.', 'error')
+            return render_template('login.html')
+    return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('Has cerrado sesión correctamente.', 'success')
+    return redirect(url_for('index'))
 
 @app.route('/admin/<int:id_curso>/<int:dni>', methods=['PUT', 'DELETE'])
 def crud_inscripcion(id_curso, dni):
